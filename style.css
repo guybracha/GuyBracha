@@ -1,5 +1,6 @@
 *{
     font-family: 'Belanosima', sans-serif;
+    font-size: 20px;
 }
 
 .profile{
@@ -23,3 +24,14 @@ footer a{
     align-items: center;
     height: 300px;
   }
+
+a{
+    margin-left: 30px;
+}
+header{
+    background-color: silver;
+}
+.id{
+    background-image: url(contents/background.jpg);
+    border: solid 3px black;
+}
