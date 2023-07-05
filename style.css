@@ -27,6 +27,7 @@ footer a{
 
 a{
     margin-left: 30px;
+    font-size: 50px;
 }
 header{
     background-color: silver;
@@ -34,4 +35,5 @@ header{
 .id{
     background-image: url(contents/background.jpg);
     border: solid 3px black;
+    font-size: 50px;
 }
