@@ -17,3 +17,5 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() { 
   modal.style.display = "none";
 }
+
+console.log("Developed by Guy Bracha - 2023. Contact me by Email");
