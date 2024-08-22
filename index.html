@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Guy Bracha</title>
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,106 +11,151 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="align-items: left;">
-            <h1 class="display-2" style="font-weight: bolder; text-align: center;">Guy Bracha</h1>
-            <h2 class="display-3" style="font-weight: lighter; text-align: center;">Portfolio Site</h2>
+  <header class="bg-light text-center p-4">
+    <h1 class="display-4">Guy Bracha</h1>
+    <h2 class="display-6">Portfolio Site</h2>
+    <nav class="mt-3">
+        <a href="mailto:guy.bracha@gmail.com" class="btn btn-outline-dark">Contact Me</a>
+    </nav>
+  </header>
+  <section class="container my-5">
+    <div class="text-center">
+        <img src="contents/profile.jpg" class="rounded-circle mb-4" width="200" alt="Profile Image">
+        <h2>Guy Bracha</h2>
+        <p class="lead">Everything starts with an idea...</p>
+        <p><em>- Earl Nightingale</em></p>
+    </div>
+  </section>
+  <section class="container my-5">
+    <h3>About Me</h3>
+    <p>
+        My name is Guy Bracha, I'm a 25-year-old from Herzliya, Israel. I’m currently studying software engineering at Ariel Technical College with a passion for computers, gaming, and web development.
+    </p>
+</section>
+
+  <section class="bg-light p-5">
+      <h3>Education</h3>
+      <ul>
+          <li>2016 - Graduated from Hadash High School, Herzliya</li>
+          <li>2022-present - Studying Software Engineering at Ariel Technical College</li>
+      </ul>
+  </section>
+
+  <section class="p-5">
+      <h3>Work Experience</h3>
+      <ul>
+          <li>2017-2019: Civil Service (She'rot Le'umi) - Access Israel</li>
+          <li>2021-2022: Cyber Analyst at Cellcom</li>
+      </ul>
+  </section>
+  <div class="bg-warning border border-danger rounded p-4">
+    <h2 class="display-4 text-danger mb-4">Projects</h2>
+    <h3 class="h5 text-dark mb-3">Source Codes</h3>
+    
+    <ul class="list-unstyled">
+        <li class="mb-2">
+            <strong>Compass World:</strong> 
+            <a href="https://github.com/guybracha/compass-world" class="text-decoration-none text-primary">Source Code (HTML, CSS, JS, Bootstrap)</a> | 
+            <a href="https://guybracha.github.io/compass-world/" class="text-decoration-none text-primary">Live Site</a>
+        </li>
+        <li class="mb-2">
+            <strong>Student Form:</strong> 
+            <a href="https://github.com/guybracha/StudentForm" class="text-decoration-none text-primary">Source Code (C#)</a>
+        </li>
+        <li class="mb-2">
+            <strong>Python Collection:</strong> 
+            <a href="https://github.com/guybracha/PythonCollection" class="text-decoration-none text-primary">Source Code (Python)</a>
+        </li>
+        <li class="mb-2">
+            <strong>Dunder Mifflin:</strong> 
+            <a href="https://github.com/guybracha/dunder-mifflin" class="text-decoration-none text-primary">Source Code (HTML, CSS, JS)</a>
+        </li>
+        <li class="mb-2">
+            <strong>Design Patterns (Java):</strong> 
+            <a href="https://github.com/guybracha/ZooSystem" class="text-decoration-none text-primary">Source Code (Java)</a>
+        </li>
+        <li class="mb-2">
+            <strong>Supermarket:</strong> 
+            <a href="https://github.com/guybracha/Supermarket" class="text-decoration-none text-primary">Source Code (Python)</a>
+        </li>
+        <li class="mb-2">
+            <strong>Final Project (C# ui.net):</strong> 
+            <a href="https://github.com/guybracha/FinalProject" class="text-decoration-none text-primary">Source Code (C#)</a>
+        </li>
+        <li class="mb-2">
+          <strong>OS project (C language):</strong> 
+          <a href="https://github.com/guybracha/OS_Proj" class="text-decoration-none text-primary">Source Code (C#)</a>
+      </li>
+      <li class="mb-2">
+        <strong>TS project (TypeScript):</strong> 
+        <a href="https://github.com/guybracha/tsProject" class="text-decoration-none text-primary">Source Code (C#)</a>
+      </li>
+      <li class="mb-2">
+        <strong>Mongo DB/Node js project (JS):</strong> 
+        <a href="https://github.com/guybracha/MongoNodeProj" class="text-decoration-none text-primary">Source Code (C#)</a>
+      </li>
+      <li class="mb-2">
+        <strong>React js Final Project:</strong> 
+        <a href="https://github.com/guybracha/react-finale" class="text-decoration-none text-primary">Source Code (C#)</a>
+      </li>
+    </ul>
+  </div>
+  <div class="bg-light-purple p-5">
+    <h3 class="display-4 text-center mb-4">Graphic Designs</h3>
+    
+    <div class="mb-5">
+        <h4 class="h5 text-secondary">Final Project - January 2023</h4>
+        <p>Layouts and design for a fictional website of the band 'KISS'</p>
+        <a href="https://drive.google.com/file/d/17M7uU-hGodQUmQAzP0XjegojsCFrojP-/view?usp=sharing" class="btn btn-outline-primary">View PDF</a>
+    </div>
+    
+    <div class="mb-5">
+        <h4 class="h5 text-secondary">Illustrator Designs</h4>
+        <p>Made for Computer Graphics Course at Ariel</p>
+        
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <img src="contents/britain.png" alt="Icon idea" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-3 mb-4">
+                <img src="contents/bubbles.png" alt="Bubbles" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-3 mb-4">
+                <img src="contents/il.png" alt="Israel" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-3 mb-4">
+                <img src="contents/flag.png" alt="Israeli Flag" class="img-fluid rounded shadow-sm">
+            </div>
         </div>
-        <div style="align-items: right;">
-            <h2 class="display-2" style="margin-right: 30px; text-align: center;">Contact</h2>
-            <a class="display-3" href="mailto:guy.bracha@gmail.com">Email</a>
-          </div>
-    </header>
-    <div class="id" style="color: white;">
-        <h2 class="display-2" style="margin: 25px; text-align: center; text-decoration: underline;">Developer ID</h2>
-        <h2 class="display-2" style="text-align: center;">everything starts with an idea...</h2>
-        <h3 class="display-2" style="text-align: center;">-Earl Nighintgale</h3>
-        <img class="profile" src="contents/profile.jpg" alt="profile img" width="300px" height="300px">
-        <h2 style="text-align: center;" class="display-1">Guy Bracha</h2>
-    </div>
-    <h2 class="display-3" style="margin-left: 10px;">Who am i?</h2>
-    <p class="display-4" style="margin: 30px; background-color: rgb(206, 206, 206);">Name is Guy Bracha, next month i will be 25 years old, live in Herzliya, Israel; and right now studying software engineering at Ariel Technical College. I've a big passion about computers, internet, and technological innovations in gaming, web development, and new media. My ambitious is to be a web developer in the new media/gaming/web industry.</p>
-    <div style="background-color: skyblue;">
-    <h2 class="display-3" style="margin-left: 20px;">Education</h2>
-    <p class="display-5" style="margin-left: 30px;">2016 - Finished 12 years of education in Hadash High School Herzliya.</p>
-    <p class="display-5" style="margin-left: 30px;">2022-current - Study Practical Software engineering at ariel technical college</p>
-    </div>
-    <div style="background-color: rgb(255, 99, 99);">
-    <h2 class="display-3" style="margin-left: 20px;">Labor Experience</h2>
-    <p class="display-5" style="margin-left: 30px;">2017-2019 Civil Service (She'rot Le'umi) - Access Israel</p>
-    <p class="display-5"  style="margin-left: 30px;">2021-2022 Cyber Analyst at Cellcom</p>
-    </div>
-    <div style="background-color: rgb(96, 255, 96);">
-    <h2 class="display-3" style="margin-left: 20px;">Tools and Knowledge</h2>
-    <p class="display-6" style="margin-left: 30px;">Adobe Photoshop, Illustrator, Premiere. Visual Studio, Visual Studio Code. HTML, CSS, JS, C#, Java, Python.</p>
-    <p class="display-6" style="margin-left: 30px;">Languages: Hebrew, English.<br>Very Creative Person<br>Thinks different outside the box</p>
-    </div>
-    <div style="background-color: gold; border: 4.5px solid red;">
-    <h2 class="display-3" style="margin-left: 10px;">Projects</h2>
-    <h3 class="display-4" style="margin-left: 30px;">Src Codes</h3>
-    <a href="https://github.com/guybracha/compass-world">Compass World - src code (HTML, css, js, bootstrap)</a>
-    <br>
-    <a href="https://guybracha.github.io/compass-world/">Compass World - The Site (Hebrew)</a>
-    <br>
-    <a href="https://github.com/guybracha/StudentForm">Student Form (c#)</a>
-    <br>
-    <a href="https://github.com/guybracha/PythonCollection">Python Collection</a>
-    <br>
-    <a href="https://github.com/guybracha/dunder-mifflin">dunder-mifflin (html,css,js) - Tribute + Landing Page</a>
-    <br>
-    <a href="https://github.com/guybracha/FindHero">Find Hero (Java)</a>
-    <br>
-    <a href="https://github.com/guybracha/Supermarket">Supermarket (Python)</a>
-    <br>
-    <a href="https://github.com/guybracha/FinalProject">FinalProject (C#)</a>
-    </div>
-    <br>
-    <div style="background-color: rgb(232, 191, 250);">
-    <h3 class="display-3" style="margin-left: 30px;">Graphic Designs</h3>
-    <h4 class="display-4" style="margin-left: 40px;">Final Project - January 2023</h4>
-    <h5 class="display-5" style="margin-left: 40px;">Layouts and design for a fictional website of the band 'KISS'</h5>
-    <a style="margin-left: 40px;" href="https://drive.google.com/file/d/17M7uU-hGodQUmQAzP0XjegojsCFrojP-/view?usp=sharing">PDF file</a>
-    <h4 class="display-4" style="margin-left: 40px;">Illustrator Designs</h4>
-    <p class="display-5" style="margin-left: 40px;">Made for Computer Graphics Course at Ariel</p>
-    </div>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="contents/britain.png" alt="Icon idea" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="contents/bubbles.png" alt="Bubbles" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="contents/il.png" alt="Israel" class="img-fluid">
-          </div>
-          <div class="col-md-3">
-            <img src="contents/flag.png" alt="Israeli Flag" class="img-fluid">
-          </div>
+        
+        <div class="text-center mb-5">
+            <img id="myImg" src="contents/jl.png" alt="Justice League fanart - made with illustrator" class="img-fluid rounded shadow-lg">
         </div>
-      </div>
-      <img id="myImg" class="img-fluid" src="contents/jl.png" alt="Justice League fanart - made with illustrator">
-      <div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01">
-        <div id="caption"></div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="contents/Asset3.png" alt="asset" class="img-fluid">
-          </div>
-          <div class="col-md-4">
-            <img src="contents/star.png" alt="star" class="img-fluid">
-          </div>
-          <div class="col-md-4">
-            <img src="contents/textEnv.png" alt="text" class="img-fluid">
-          </div>
+    </div>
+    
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <img src="contents/Asset3.png" alt="asset" class="img-fluid rounded shadow-sm">
         </div>
-      </div>
-        <footer>
-        <h2 class="display-3">For Business inquiries</h2>
-        <a class="display-3" href="mailto:guy.bracha@gmail.com">Press Here</a>
+        <div class="col-md-4 mb-4">
+            <img src="contents/star.png" alt="star" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="contents/textEnv.png" alt="text" class="img-fluid rounded shadow-sm">
+        </div>
+    </div>
+</div>
+
+  <!-- Modal for Image Preview -->
+  <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
+      <div id="caption"></div>
+  </div>
+
+      <footer class="bg-dark text-white text-center p-4">
+        <p>Contact for Business Inquiries</p>
+        <a href="mailto:guy.bracha@gmail.com" class="btn btn-outline-light">Email Me</a>
     </footer>
     <script src="script.js"></script>
 </body>
