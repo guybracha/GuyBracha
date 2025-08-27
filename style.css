@@ -629,3 +629,31 @@ footer a { font-size: var(--fs-base); }
   }
 }
 
+/* Zoom toolbar inside modal */
+.zoom-toolbar{
+  position: absolute;
+  left: 50%;
+  top: .5rem;
+  transform: translateX(-50%);
+  display: inline-flex;
+  gap: .25rem;
+  background: rgba(17,17,17,.55);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 999px;
+  padding: .25rem;
+  z-index: 1200;
+  backdrop-filter: blur(6px);
+}
+.zoom-btn{
+  appearance: none;
+  border: 0;
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  border-radius: 999px;
+  padding: .35rem .6rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.zoom-btn:hover{ background: rgba(255,255,255,.18); }
+.zoom-reset{ min-width: 58px; }
