@@ -104,10 +104,29 @@ a:focus-visible {
 .section {
   padding: clamp(24px, 4vw, 64px)  clamp(16px, 4vw, 48px);
 }
-.container {
-  width: min(1120px, 92vw);
+/* שמור על רוחב מקס' אבל תן padding אופקי כדי לאזן את ה-negative margins של .row */
+.container{
+  width: min(1120px, 100%);
   margin-inline: auto;
+  padding-left: 12px;   /* ~.75rem */
+  padding-right: 12px;  /* ~.75rem */
 }
+@media (min-width: 768px){
+  .container{ padding-left: 16px; padding-right: 16px; }
+}
+img, svg, video, canvas{
+  max-width: 100%;
+  height: auto;
+  display: block;      /* מונע רווחי inline שעלולים לגרום לגלילה קלה */
+}
+@media (max-width: 400px){
+  .gallery{
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+body{ overflow-wrap: anywhere; }
+html, body{ overflow-x: hidden; }
+
 
 /* -------------------------------------------------------
    Header / Footer
