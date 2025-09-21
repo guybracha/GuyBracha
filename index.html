@@ -9,9 +9,42 @@
     <link rel="shortcut icon" href="contents/britain.webp" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script defer src="script.js"></script>
+
+    <!-- טען את הסקריפט שלך כ-defer כדי שלא ירוץ לפני שה-DOM מוכן -->
+    <script src="script.js" defer></script>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- חיזוקי CSS קלים (אפשר להעביר ל-style.css אם תרצה) -->
+    <style>
+      /* ביצועים — רמיזות לדפדפן */
+      .header-avatar, .brand-title, .brand-subtitle, .btn-cta, .card, .design-img {
+        will-change: transform, opacity;
+      }
+      /* הובר נעים ל-CTA */
+      .btn-cta { transition: transform .2s ease; }
+      .btn-cta:focus-visible { outline: 2px solid var(--bs-warning); outline-offset: 2px; }
+
+      /* מודאל — GSAP מוסיף/מסיר is-open */
+      .custom-modal { opacity: 0; pointer-events: none; }
+      .custom-modal.is-open { pointer-events: auto; }
+
+      /* חשיפת תמונות ב-GSAP (משתמש במשתנה --maskScaleX) */
+      .design-img {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        --maskScaleX: 1; /* מצב התחלתי: המסכה מכסה */
+      }
+      .design-img::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: #0b0b0b;
+        transform-origin: left center;
+        transform: scaleX(var(--maskScaleX));
+        pointer-events: none;
+      }
+    </style>
 </head>
 <body>
 <header class="site-header">
@@ -34,252 +67,236 @@
   </div>
 </header>
 
-  <section class="container my-5">
-    <p>Everything starts with an idea... - Earl Nightingale</p>
-    <h3>About Me</h3>
-    <p>
-      My name is Guy Bracha, a 27-year-old software engineer from Herzliya, Israel.
-      <br>
-      I recently graduated in Software Engineering from a technical college, where I gained hands-on experience in designing and developing modern applications.
-      <br>
-      I have a strong passion for computers, gaming, and web development, and I enjoy combining creativity with technology to build engaging digital experiences. Over the past few years, I have worked on diverse projects ranging from full-stack web applications to interactive front-end interfaces, often using React, Node.js, Firebase, and cloud technologies.
-      <br>
-      In addition to my technical skills, I’m curious and constantly exploring new tools and approaches — including AI technologies such as GPT and Midjourney — to enhance creativity, speed up workflows, and deliver unique results.
-      <br>
-      What excites me most is the opportunity to learn, adapt, and grow while contributing to meaningful projects. I’m highly motivated, detail-oriented, and driven to bring value both independently and as part of a team.
-      <br>
-      Beyond my professional work, I also enjoy creating comics and drawing in my free time, which allows me to express creativity visually and bring imaginative ideas to life.
-    </p>
+<section class="container my-5">
+  <p>Everything starts with an idea... - Earl Nightingale</p>
+  <h3>About Me</h3>
+  <p>
+    My name is Guy Bracha, a 27-year-old software engineer from Herzliya, Israel.
+    <br>
+    I recently graduated in Software Engineering from a technical college, where I gained hands-on experience in designing and developing modern applications.
+    <br>
+    I have a strong passion for computers, gaming, and web development, and I enjoy combining creativity with technology to build engaging digital experiences. Over the past few years, I have worked on diverse projects ranging from full-stack web applications to interactive front-end interfaces, often using React, Node.js, Firebase, and cloud technologies.
+    <br>
+    In addition to my technical skills, I’m curious and constantly exploring new tools and approaches — including AI technologies such as GPT and Midjourney — to enhance creativity, speed up workflows, and deliver unique results.
+    <br>
+    What excites me most is the opportunity to learn, adapt, and grow while contributing to meaningful projects. I’m highly motivated, detail-oriented, and driven to bring value both independently and as part of a team.
+    <br>
+    Beyond my professional work, I also enjoy creating comics and drawing in my free time, which allows me to express creativity visually and bring imaginative ideas to life.
+  </p>
 </section>
 
-  <section class="bg-light p-5">
-      <h3>Education</h3>
-      <ul>
-          <li>2016 - Graduated from Hadash High School, Herzliya</li>
-          <li>2022-2025 - Studying Practical Software Engineering at a Technical College in Ariel University</li>
-      </ul>
-  </section>
+<section class="bg-light p-5">
+  <h3>Education</h3>
+  <ul>
+    <li>2016 - Graduated from Hadash High School, Herzliya</li>
+    <li>2022-2025 - Studying Practical Software Engineering at a Technical College in Ariel University</li>
+  </ul>
+</section>
 
-  <section class="p-5">
-      <h3>Work Experience</h3>
-      <ul>
-          <li>2017-2019: Civil Service (She'rot Le'umi) - Access Israel</li>
-          <li>2021-2022: Cyber Analyst at Cellcom</li>
-      </ul>
-  </section>
-  <section class="container my-5">
-    <h2 class="display-4 text-center text-danger mb-5">🚀 Projects</h2>
-    
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      
-      <!-- פרויקט לדוגמה -->
-      <div class="col">
-        <div class="card border-danger h-100">
-          <div class="card-body">
-            <h5 class="card-title text-danger">Compass World</h5>
-            <p class="card-text">HTML, CSS, JS, Bootstrap</p>
-            <a href="https://github.com/guybracha/compass-world" class="btn btn-outline-primary btn-sm" target="_blank">Source Code</a>
-            <a href="https://guybracha.github.io/compass-world/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-          </div>
-        </div>
-      </div>
-  
-      <!-- המשך הפרויקטים באותו מבנה -->
-      <div class="col">
-        <div class="card h-100 border-secondary">
-          <div class="card-body">
-            <h5 class="card-title">Student Form</h5>
-            <p class="card-text">C#</p>
-            <a href="https://github.com/guybracha/StudentForm" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col">
-        <div class="card h-100 border-success">
-          <div class="card-body">
-            <h5 class="card-title text-success">Python Collection</h5>
-            <p class="card-text">Python</p>
-            <a href="https://github.com/guybracha/PythonCollection" class="btn btn-outline-success btn-sm" target="_blank">Source Code</a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col">
-        <div class="card h-100 border-info">
-          <div class="card-body">
-            <h5 class="card-title text-info">Dunder Mifflin</h5>
-            <p class="card-text">HTML, CSS, JS</p>
-            <a href="https://github.com/guybracha/dunder-mifflin" class="btn btn-outline-info btn-sm" target="_blank">Source Code</a>
-            <a href="https://guybracha.github.io/dunder-mifflin/" class="btn btn-info btn-sm ms-2" target="_blank">Live Site</a>
-          </div>
-        </div>
-      </div>
+<section class="p-5">
+  <h3>Work Experience</h3>
+  <ul>
+    <li>2017-2019: Civil Service (She'rot Le'umi) - Access Israel</li>
+    <li>2021-2022: Cyber Analyst at Cellcom</li>
+  </ul>
+</section>
 
-      <div class="col">
-        <div class="card h-100 border-secondary">
-          <div class="card-body">
-            <h5 class="card-title">Comixiad</h5>
-            <p class="card-text">React js, Node.js, Express</p>
-            <a href="https://github.com/guybracha/comixiad" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-            <a href="https://comixiad.com/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-          </div>
-        </div>
-      </div>
+<section class="container my-5">
+  <h2 class="display-4 text-center text-danger mb-5">🚀 Projects</h2>
 
-      <div class="col">
-        <div class="card h-100 border-secondary">
-          <div class="card-body">
-            <h5 class="card-title">TypeScript Project</h5>
-            <p class="card-text">TS</p>
-            <a href="https://github.com/guybracha/tsProject" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          </div>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <!-- פרויקט לדוגמה -->
+    <div class="col">
+      <div class="card border-danger h-100">
+        <div class="card-body">
+          <h5 class="card-title text-danger">Compass World</h5>
+          <p class="card-text">HTML, CSS, JS, Bootstrap</p>
+          <a href="https://github.com/guybracha/compass-world" class="btn btn-outline-primary btn-sm" target="_blank">Source Code</a>
+          <a href="https://guybracha.github.io/compass-world/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
         </div>
       </div>
+    </div>
 
-            <div class="col">
-        <div class="card h-100 border-secondary">
-          <div class="card-body">
-            <h5 class="card-title">Karina Site</h5>
-            <p class="card-text">React.js, Html, Css, bootstrap</p>
-            <a href="https://github.com/guybracha/Karina" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-            <a href="http://karina.co.il/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-          </div>
+    <!-- המשך הפרויקטים באותו מבנה -->
+    <div class="col">
+      <div class="card h-100 border-secondary">
+        <div class="card-body">
+          <h5 class="card-title">Student Form</h5>
+          <p class="card-text">C#</p>
+          <a href="https://github.com/guybracha/StudentForm" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
         </div>
       </div>
+    </div>
 
-            <div class="col">
-        <div class="card h-100 border-secondary">
-          <div class="card-body">
-            <h5 class="card-title">Python Game - Underwater Adventures</h5>
-            <p class="card-text">Python.turtle</p>
-            <a href="https://github.com/guybracha/Underwater-Adventures" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-            <a href="https://guy-bracha.itch.io/underwater-adventure" class="btn btn-outline-dark btn-sm" target="_blank">Download Link</a>
-          </div>
+    <div class="col">
+      <div class="card h-100 border-success">
+        <div class="card-body">
+          <h5 class="card-title text-success">Python Collection</h5>
+          <p class="card-text">Python</p>
+          <a href="https://github.com/guybracha/PythonCollection" class="btn btn-outline-success btn-sm" target="_blank">Source Code</a>
         </div>
       </div>
-  
-      <!-- תמשיך באותו סגנון עבור שאר הפרויקטים -->
-      <!-- ... -->
-  
     </div>
-  </section>
-  <section class="bg-light p-5">
-    <h3 class="display-4 text-center mb-5 text-dark">🎨 Graphic Designs</h3>
-  
-    <!-- פרויקט גמר -->
-     <div class="mb-5 text-center">
-      <h4 class="h5 text-secondary">Justice League Vector Fanart - November 2022</h4>
-      <p>Fanart made in Adobe Illustrator</p>
-      <a href="https://drive.google.com/file/d/1cXdjy0K3r8Sd0uBAzOUunlVcsFRLljew/view?usp=sharing"
-         class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+
+    <div class="col">
+      <div class="card h-100 border-info">
+        <div class="card-body">
+          <h5 class="card-title text-info">Dunder Mifflin</h5>
+          <p class="card-text">HTML, CSS, JS</p>
+          <a href="https://github.com/guybracha/dunder-mifflin" class="btn btn-outline-info btn-sm" target="_blank">Source Code</a>
+          <a href="https://guybracha.github.io/dunder-mifflin/" class="btn btn-info btn-sm ms-2" target="_blank">Live Site</a>
+        </div>
+      </div>
     </div>
-    <div class="mb-5 text-center">
-      <h4 class="h5 text-secondary">Final Project - January 2023</h4>
-      <p>Layouts and design for a fictional website of the band 'KISS'</p>
-      <a href="https://drive.google.com/file/d/17M7uU-hGodQUmQAzP0XjegojsCFrojP-/view?usp=sharing"
-         class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+
+    <div class="col">
+      <div class="card h-100 border-secondary">
+        <div class="card-body">
+          <h5 class="card-title">Comixiad</h5>
+          <p class="card-text">React js, Node.js, Express</p>
+          <a href="https://github.com/guybracha/comixiad" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
+          <a href="https://comixiad.com/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
+        </div>
+      </div>
     </div>
-    <div class="mb-5 text-center">
-      <h4 class="h5 text-secondary">Compass Alliance id - 2024-2025</h4>
-      <p>Layouts and design for the website <strong>"Compasss World"</strong></p>
-      <a href="https://drive.google.com/file/d/1UNIIW9tsDc-oYbhl9OLRehTIkG6Kjxzh/view?usp=sharing"
-         class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+
+    <div class="col">
+      <div class="card h-100 border-secondary">
+        <div class="card-body">
+          <h5 class="card-title">TypeScript Project</h5>
+          <p class="card-text">TS</p>
+          <a href="https://github.com/guybracha/tsProject" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
+        </div>
+      </div>
     </div>
-    <div class="mb-5 text-center">
-      <h4 class="h5 text-secondary">Karina.co.il Design layout</h4>
-      <p>Layouts and design for the website <a href="https://karina.co.il/">Karina.co.il</a></p>
-      <a href="https://drive.google.com/file/d/1sW__DYzzqa-BrEpqCpdO4exhOch4tUVd/view?usp=sharing"
-         class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+
+    <div class="col">
+      <div class="card h-100 border-secondary">
+        <div class="card-body">
+          <h5 class="card-title">Karina Site</h5>
+          <p class="card-text">React.js, Html, Css, bootstrap</p>
+          <a href="https://github.com/guybracha/Karina" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
+          <a href="http://karina.co.il/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
+        </div>
+      </div>
     </div>
+
+    <div class="col">
+      <div class="card h-100 border-secondary">
+        <div class="card-body">
+          <h5 class="card-title">Python Game - Underwater Adventures</h5>
+          <p class="card-text">Python.turtle</p>
+          <a href="https://github.com/guybracha/Underwater-Adventures" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
+          <a href="https://guy-bracha.itch.io/underwater-adventure" class="btn btn-outline-dark btn-sm" target="_blank">Download Link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light p-5">
+  <h3 class="display-4 text-center mb-5 text-dark">🎨 Graphic Designs</h3>
+
+  <!-- פרויקט גמר -->
+  <div class="mb-5 text-center">
+    <h4 class="h5 text-secondary">Justice League Vector Fanart - November 2022</h4>
+    <p>Fanart made in Adobe Illustrator</p>
+    <a href="https://drive.google.com/file/d/1cXdjy0K3r8Sd0uBAzOUunlVcsFRLljew/view?usp=sharing"
+       class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+  </div>
+  <div class="mb-5 text-center">
+    <h4 class="h5 text-secondary">Final Project - January 2023</h4>
+    <p>Layouts and design for a fictional website of the band 'KISS'</p>
+    <a href="https://drive.google.com/file/d/17M7uU-hGodQUmQAzP0XjegojsCFrojP-/view?usp=sharing"
+       class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+  </div>
+  <div class="mb-5 text-center">
+    <h4 class="h5 text-secondary">Compass Alliance id - 2024-2025</h4>
+    <p>Layouts and design for the website <strong>"Compasss World"</strong></p>
+    <a href="https://drive.google.com/file/d/1UNIIW9tsDc-oYbhl9OLRehTIkG6Kjxzh/view?usp=sharing"
+       class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+  </div>
+  <div class="mb-5 text-center">
+    <h4 class="h5 text-secondary">Karina.co.il Design layout</h4>
+    <p>Layouts and design for the website <a href="https://karina.co.il/">Karina.co.il</a></p>
+    <a href="https://drive.google.com/file/d/1sW__DYzzqa-BrEpqCpdO4exhOch4tUVd/view?usp=sharing"
+       class="btn btn-outline-primary" target="_blank">📄 View PDF</a>
+  </div>
+
   <div class="container">
-  <div class="row g-3 text-center">
-  <div class="col-12 col-sm-6 col-md-4 col-lg">
-    <img src="contents/graphics/Kiss-Final task/artboard1.webp"
-         alt="Kiss layout 1"
-         class="img-fluid design-img"
-         data-group="kiss">
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-lg">
-    <img src="contents/graphics/Kiss-Final task/artboard2.webp"
-         alt="Kiss layout 2"
-         class="img-fluid design-img"
-         data-group="kiss">
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-lg">
-    <img src="contents/graphics/Kiss-Final task/artboard3.webp"
-         alt="Kiss layout 3"
-         class="img-fluid design-img"
-         data-group="kiss">
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-lg">
-    <img src="contents/graphics/Kiss-Final task/artboard4.webp"
-         alt="Kiss layout 4"
-         class="img-fluid design-img"
-         data-group="kiss">
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-lg">
-    <img src="contents/graphics/Kiss-Final task/artboard5.webp"
-         alt="Kiss layout 5"
-         class="img-fluid design-img"
-         data-group="kiss">
-  </div>
-</div>
-</div>
-    <!-- עיצובים קטנים -->
-    <div class="row g-4 mb-5">
-      <div class="col-md-3 col-6">
-        <img src="contents/britain.webp" alt="Icon idea" class="img-fluid rounded shadow-sm design-img">
+    <div class="row g-3 text-center">
+      <div class="col-12 col-sm-6 col-md-4 col-lg">
+        <img src="contents/graphics/Kiss-Final task/artboard1.webp" alt="Kiss layout 1" class="img-fluid design-img" data-group="kiss">
       </div>
-      <div class="col-md-3 col-6">
-        <img src="contents/bubbles.webp" alt="Bubbles" class="img-fluid rounded shadow-sm design-img">
+      <div class="col-12 col-sm-6 col-md-4 col-lg">
+        <img src="contents/graphics/Kiss-Final task/artboard2.webp" alt="Kiss layout 2" class="img-fluid design-img" data-group="kiss">
       </div>
-      <div class="col-md-3 col-6">
-        <img src="contents/il.webp" alt="Israel" class="img-fluid rounded shadow-sm design-img">
+      <div class="col-12 col-sm-6 col-md-4 col-lg">
+        <img src="contents/graphics/Kiss-Final task/artboard3.webp" alt="Kiss layout 3" class="img-fluid design-img" data-group="kiss">
       </div>
-      <div class="col-md-3 col-6">
-        <img src="contents/flag.webp" alt="Israeli Flag" class="img-fluid rounded shadow-sm design-img">
+      <div class="col-12 col-sm-6 col-md-4 col-lg">
+        <img src="contents/graphics/Kiss-Final task/artboard4.webp" alt="Kiss layout 4" class="img-fluid design-img" data-group="kiss">
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg">
+        <img src="contents/graphics/Kiss-Final task/artboard5.webp" alt="Kiss layout 5" class="img-fluid design-img" data-group="kiss">
       </div>
     </div>
-  
-    <!-- עיצוב גדול -->
-    <div class="text-center mb-5">
-      <img src="contents/jl.webp" alt="Justice League fanart - made with Illustrator" class="img-fluid rounded shadow-lg design-img">
+  </div>
+
+  <!-- עיצובים קטנים -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-3 col-6">
+      <img src="contents/britain.webp" alt="Icon idea" class="img-fluid rounded shadow-sm design-img">
     </div>
-  
-    <!-- שלישיית עיצובים נוספים -->
-    <div class="row g-4 mb-5 text-center">
-      <div class="col-md-4">
-        <img src="contents/Asset3.webp" alt="Asset" class="img-fluid rounded shadow-sm design-img">
-      </div>
-      <div class="col-md-4">
-        <img src="contents/star.webp" alt="Star" class="img-fluid rounded shadow-sm design-img">
-      </div>
-      <div class="col-md-4">
-        <img src="contents/textEnv.webp" alt="Text" class="img-fluid rounded shadow-sm design-img">
-      </div>
+    <div class="col-md-3 col-6">
+      <img src="contents/bubbles.webp" alt="Bubbles" class="img-fluid rounded shadow-sm design-img">
     </div>
-        <div class="row g-4 mb-5 text-center">
-      <div class="col-md-6">
-        <img src="contents/union.webp" alt="union" class="img-fluid rounded shadow-sm design-img">
-      </div>
-      <div class="col-md-6">
-        <img src="contents/council.webp" alt="council" class="img-fluid rounded shadow-sm design-img">
-      </div>
+    <div class="col-md-3 col-6">
+      <img src="contents/il.webp" alt="Israel" class="img-fluid rounded shadow-sm design-img">
     </div>
-  
-    <!-- עיצוב זהות מותגית -->
-    <div class="text-center">
-      <img src="contents/compassAlliance_idENG.webp" alt="Compass Alliance ID" class="img-fluid design-img shadow-lg rounded">
+    <div class="col-md-3 col-6">
+      <img src="contents/flag.webp" alt="Israeli Flag" class="img-fluid rounded shadow-sm design-img">
     </div>
-  
-    <!-- Modal -->
-  </section>
-      <footer class="bg-dark text-white text-center p-4">
-        <p>Contact for Business Inquiries</p>
-        <a href="mailto:guy.bracha@gmail.com" class="btn btn-outline-light">Email Me</a>
-    </footer>
-    <!-- Modal -->
+  </div>
+
+  <!-- עיצוב גדול -->
+  <div class="text-center mb-5">
+    <img src="contents/jl.webp" alt="Justice League fanart - made with Illustrator" class="img-fluid rounded shadow-lg design-img">
+  </div>
+
+  <!-- שלישיית עיצובים נוספים -->
+  <div class="row g-4 mb-5 text-center">
+    <div class="col-md-4">
+      <img src="contents/Asset3.webp" alt="Asset" class="img-fluid rounded shadow-sm design-img">
+    </div>
+    <div class="col-md-4">
+      <img src="contents/star.webp" alt="Star" class="img-fluid rounded shadow-sm design-img">
+    </div>
+    <div class="col-md-4">
+      <img src="contents/textEnv.webp" alt="Text" class="img-fluid rounded shadow-sm design-img">
+    </div>
+  </div>
+
+  <div class="row g-4 mb-5 text-center">
+    <div class="col-md-6">
+      <img src="contents/union.webp" alt="union" class="img-fluid rounded shadow-sm design-img">
+    </div>
+    <div class="col-md-6">
+      <img src="contents/council.webp" alt="council" class="img-fluid rounded shadow-sm design-img">
+    </div>
+  </div>
+
+  <!-- עיצוב זהות מותגית -->
+  <div class="text-center">
+    <img src="contents/compassAlliance_idENG.webp" alt="Compass Alliance ID" class="img-fluid design-img shadow-lg rounded">
+  </div>
+</section>
+
+<footer class="bg-dark text-white text-center p-4">
+  <p>Contact for Business Inquiries</p>
+  <a href="mailto:guy.bracha@gmail.com" class="btn btn-outline-light">Email Me</a>
+</footer>
+
 <!-- Modal -->
 <div id="myModal" class="custom-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-box" role="dialog" aria-modal="true" aria-label="Image viewer">
@@ -297,5 +314,17 @@
   </div>
 </div>
 
+<!-- ===== סקריפטים בסוף ה-body כדי להבטיח שה-DOM קיים ===== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+<!-- GSAP Core + ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+</script>
+
+<!-- קובץ האנימציות שלך (נפרד) -->
+<script src="gsap-init.js"></script>
 </body>
 </html>

@@ -676,3 +676,36 @@ footer a { font-size: var(--fs-base); }
 }
 .zoom-btn:hover{ background: rgba(255,255,255,.18); }
 .zoom-reset{ min-width: 58px; }
+
+/* ביצועים */
+.header-avatar,
+.brand-title,
+.brand-subtitle,
+.btn-cta,
+.card,
+.design-img {
+  will-change: transform, opacity;
+}
+
+/* פוקוס נעים לכפתורי CTA */
+.btn-cta { transition: transform .2s ease; }
+.btn-cta:focus-visible { outline: 2px solid var(--bs-warning); outline-offset: 2px; }
+
+/* מודאל — התחלה סמויה (GSAP יטפל בכניסה) */
+.custom-modal { opacity: 0; pointer-events: none; }
+.custom-modal.is-open { pointer-events: auto; }
+
+/* תמונות בגלריה — מסיכת "חשיפה" נעימה */
+.design-img {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.design-img::after{
+  content:"";
+  position:absolute; inset:0;
+  background:#0b0b0b;
+  transform-origin:left center;
+  transform:scaleX(1);
+  pointer-events:none;
+}
