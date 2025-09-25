@@ -40,13 +40,14 @@ Here are some highlights from my portfolio:
 | Project | Tech Stack | Links |
 |---------|------------|-------|
 | **Compass World** | HTML, CSS, JS, Bootstrap | [Live Site](https://guybracha.github.io/compass-world/) |
-| **Student Form** | C# | [Source Code](#) |
-| **Python Collection** | Python | [Source Code](#) |
-| **Dunder Mifflin** | HTML, CSS, JS | [Source Code](#) |
-| **Comixiad** | React, Node.js, Express | [Live Site](https://comixiad.com) |
-| **TypeScript Project** | TypeScript | [Source Code](#) |
+| **Student Form** | C# | [Source Code](https://github.com/guybracha/StudentForm) |
+| **Python Final Project** | Python | [Source Code](https://github.com/guybracha/Supermarket) |
+| **Dunder Mifflin** | HTML, CSS, JS | [Source Code](https://github.com/guybracha/dunder-mifflin) |
+| **Comixiad** | React, Node.js, Express, MongoDB | [Live Site](https://comixiad.com) |
+| **TypeScript Project** | TypeScript, JavaScript, HTML, CSS | [Source Code](https://github.com/guybracha/tsProject) |
 | **Karina Site** | React, HTML, CSS, Bootstrap | [Live Site](https://karina.co.il) |
-| **Python Game – Underwater Adventures** | Python (turtle) | [Download](https://guy-bracha.itch.io) |
+| **Python Game – Underwater Adventures** | Python (turtle) | [Download](https://guy-bracha.itch.io/underwater-adventure) |
+| **Compass World** V2 | Astro Build, GSAP, MDX, Typescript, JavaScript, Bootstrap, Json | [Live Site](https://guybracha.github.io/compass-world-astro/) |
 
 ---
 
@@ -64,7 +65,7 @@ Here are some highlights from my portfolio:
 I’m always open to collaborations, freelance work, or creative partnerships.  
 Reach out through:
 
-- **LinkedIn**: [Profile](https://www.linkedin.com)  
+- **LinkedIn**: [Profile](https://www.linkedin.com/in/guy-bracha-b44b34244/)  
 - **GitHub**: [Profile](https://github.com/guybracha)  
 - **Email**: *guy.bracha@gmail.com*  
 
