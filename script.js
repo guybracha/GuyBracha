@@ -1,15 +1,21 @@
 // ==================== Gallery Modal with Zoom & Pan ====================
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('myModal');
-  const modalBox = modal.querySelector('.modal-box');
+  const modal    = document.getElementById('myModal');
+  const modalBox = modal?.querySelector('.modal-box');
   const modalImg = document.getElementById('img01');
-  const caption = document.getElementById('caption');
-  const closeBtn = modal.querySelector('.btn-close-modal') || modal.querySelector('.close');
+  const caption  = document.getElementById('caption');
+  const closeBtn = modal?.querySelector('.btn-close-modal') || modal?.querySelector('.close');
+
+  if (!modal || !modalBox || !modalImg || !caption) return;
+
+  // Make modal focusable for accessibility
+  modal.setAttribute('tabindex', '-1');
+  modalBox.setAttribute('tabindex', '0');
 
   // Zoom toolbar
-  const toolbar = modal.querySelector('.zoom-toolbar');
-  const btnIn  = toolbar?.querySelector('.zoom-in');
-  const btnOut = toolbar?.querySelector('.zoom-out');
+  const toolbar  = modal.querySelector('.zoom-toolbar');
+  const btnIn    = toolbar?.querySelector('.zoom-in');
+  const btnOut   = toolbar?.querySelector('.zoom-out');
   const btnReset = toolbar?.querySelector('.zoom-reset');
 
   // All thumbs
@@ -22,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return acc;
   }, {});
 
-  let lastFocused = null;
+  let lastFocused  = null;
   let currentGroup = 'all';
   let currentIndex = -1;
 
@@ -31,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let tx = 0, ty = 0; // translate
   let isPanning = false;
   let startX = 0, startY = 0;
-  let imgRectCache = null;
+  let boxRectCache = null;
 
   function applyTransform() {
     modalImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
@@ -42,30 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
     modalImg.style.transform = '';
     if (btnReset) btnReset.textContent = '100%';
   }
+
+  // Compute safe pan bounds based on the visible box and scaled image box
   function clampPan() {
-    if (!imgRectCache) imgRectCache = modalImg.getBoundingClientRect();
-    const vw = modalBox.clientWidth;
-    const vh = modalBox.clientHeight;
-    const imgW = modalImg.naturalWidth;
-    const imgH = modalImg.naturalHeight;
-    const displayedW = imgW * (imgRectCache.width / imgRectCache.width); // not used; keep for future
-    // Compute max pan (approx) based on element box
-    const boundsW = (modalImg.clientWidth * scale - vw) / 2;
-    const boundsH = (modalImg.clientHeight * scale - (vh * 0.85)) / 2;
-    if (boundsW > 0) { tx = Math.min(boundsW, Math.max(-boundsW, tx)); } else { tx = 0; }
-    if (boundsH > 0) { ty = Math.min(boundsH, Math.max(-boundsH, ty)); } else { ty = 0; }
+    // box (viewport of the modal)
+    const boxRect = boxRectCache || modalBox.getBoundingClientRect();
+    boxRectCache = boxRect;
+
+    // image rendered size BEFORE transform
+    const imgRect = modalImg.getBoundingClientRect();
+    const renderedW = imgRect.width / scale; // undo current scale to get base
+    const renderedH = imgRect.height / scale;
+
+    const scaledW = renderedW * scale;
+    const scaledH = renderedH * scale;
+
+    // allow a small margin so edges can be reached
+    const margin = 16;
+
+    const maxX = Math.max(0, (scaledW - boxRect.width) / 2) + margin;
+    const maxY = Math.max(0, (scaledH - boxRect.height) / 2) + margin;
+
+    tx = Math.max(-maxX, Math.min(maxX, tx));
+    ty = Math.max(-maxY, Math.min(maxY, ty));
   }
+
   function zoomAt(clientX, clientY, deltaScale) {
     const rect = modalImg.getBoundingClientRect();
     const ox = clientX - (rect.left + rect.width / 2);
-    const oy = clientY - (rect.top + rect.height / 2);
+    const oy = clientY - (rect.top  + rect.height / 2);
 
-    const newScale = Math.min(maxScale, Math.max(minScale, scale * deltaScale));
-    // Adjust translate so the point under cursor stays under cursor
-    const k = newScale / scale;
+    const nextScale = Math.min(maxScale, Math.max(minScale, scale * deltaScale));
+    const k = nextScale / scale;
+
+    // keep pointer position under cursor
     tx = (tx - ox) * k + ox;
     ty = (ty - oy) * k + oy;
-    scale = newScale;
+
+    scale = nextScale;
     clampPan();
     applyTransform();
   }
@@ -77,19 +97,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setModalImage(imgEl) {
-    const fullSrc = imgEl.getAttribute('data-full') || imgEl.src;
+    const fullSrc = imgEl.getAttribute('data-full') || imgEl.currentSrc || imgEl.src;
     const alt = imgEl.getAttribute('alt') || '';
     modalImg.src = fullSrc;
     modalImg.alt = alt;
     caption.textContent = alt;
     resetTransform();
-    imgRectCache = null;
+    boxRectCache = null;
   }
 
   function openModalByIndex(group, index) {
     currentGroup = group;
     currentIndex = index;
-    const imgs = groups[currentGroup];
+    const imgs = groups[currentGroup] || [];
     const imgEl = imgs[currentIndex];
     if (!imgEl) return;
 
@@ -99,20 +119,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // preload neighbors
     const prev = imgs[(currentIndex - 1 + imgs.length) % imgs.length];
     const next = imgs[(currentIndex + 1) % imgs.length];
-    preload(prev?.dataset.full || prev?.src);
-    preload(next?.dataset.full || next?.src);
+    preload(prev?.dataset.full || prev?.currentSrc || prev?.src);
+    preload(next?.dataset.full || next?.currentSrc || next?.src);
 
-    modal.classList.add('open');
+    // open (class 'is-open' so gsap-init.js יזהה)
+    modal.classList.add('is-open');
+    modal.style.display = 'flex'; // fallback even without GSAP
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => (closeBtn ? closeBtn.focus() : modal.focus()), 0);
+
+    // focus
+    setTimeout(() => (closeBtn ? closeBtn.focus() : modalBox.focus()), 0);
   }
 
   function closeModal() {
-    modal.classList.remove('open');
+    modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
-    modalImg.src = '';
-    caption.textContent = '';
+    // If GSAP לא טען, נסגור ידנית אחרי קצר
+    setTimeout(() => {
+      if (!modal.classList.contains('is-open')) {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        caption.textContent = '';
+      }
+    }, 250);
     document.body.style.overflow = '';
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
@@ -123,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentIndex = (currentIndex + dir + imgs.length) % imgs.length;
     setModalImage(imgs[currentIndex]);
     const neighbor = imgs[(currentIndex + dir + imgs.length) % imgs.length];
-    preload(neighbor?.dataset.full || neighbor?.src);
+    preload(neighbor?.dataset.full || neighbor?.currentSrc || neighbor?.src);
   }
 
   // ---------- Open from thumbnails ----------
@@ -155,13 +185,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- Keyboard ----------
   document.addEventListener('keydown', (e) => {
-    if (!modal.classList.contains('open')) return;
-    if (e.key === 'Escape') { e.preventDefault(); closeModal(); }
-    else if (e.key === 'ArrowRight' && scale === 1) { e.preventDefault(); showNext(1); }
-    else if (e.key === 'ArrowLeft'  && scale === 1) { e.preventDefault(); showNext(-1); }
-    else if ((e.key === '+' || e.key === '=') && toolbar) { e.preventDefault(); zoomAt(window.innerWidth/2, window.innerHeight/2, 1.2); }
-    else if (e.key === '-' && toolbar) { e.preventDefault(); zoomAt(window.innerWidth/2, window.innerHeight/2, 1/1.2); }
-    else if ((e.key === '0' || e.key === 'Escape') && toolbar && scale !== 1) { resetTransform(); }
+    if (!modal.classList.contains('is-open')) return;
+
+    // Close
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      if (scale !== 1) {
+        resetTransform(); // ESC ראשון מאפס זום, ESC שני סוגר
+        return;
+      }
+      closeModal();
+      return;
+    }
+
+    // Navigate
+    if (scale === 1) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); showNext(1); return; }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); showNext(-1); return; }
+    }
+
+    // Zoom (centered)
+    if ((e.key === '+' || e.key === '=')) { e.preventDefault(); zoomAt(window.innerWidth/2, window.innerHeight/2, 1.2); }
+    if (e.key === '-')                   { e.preventDefault(); zoomAt(window.innerWidth/2, window.innerHeight/2, 1/1.2); }
+    if (e.key === '0')                   { e.preventDefault(); resetTransform(); }
   });
 
   // ---------- Wheel zoom ----------
@@ -204,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let pinchStartDist = null;
   let pinchStartScale = 1;
   let pinchCenter = { x: 0, y: 0 };
-
   function distance(t1, t2){ const dx=t1.clientX-t2.clientX, dy=t1.clientY-t2.clientY; return Math.hypot(dx,dy); }
   function midpoint(t1, t2){ return { x:(t1.clientX+t2.clientX)/2, y:(t1.clientY+t2.clientY)/2 }; }
 
@@ -258,6 +303,14 @@ document.addEventListener('DOMContentLoaded', () => {
   btnIn?.addEventListener('click', () => zoomAt(window.innerWidth/2, window.innerHeight/2, 1.2));
   btnOut?.addEventListener('click', () => zoomAt(window.innerWidth/2, window.innerHeight/2, 1/1.2));
   btnReset?.addEventListener('click', () => resetTransform());
+
+  // ---------- Resize: reset cached rects ----------
+  window.addEventListener('resize', () => {
+    boxRectCache = null;
+    // אם חל שינוי מהותי במידות – כדאי להגביל פאן קיים
+    clampPan();
+    applyTransform();
+  }, { passive: true });
 });
 
 // ==================== Sticky Header (no jitter) ====================
@@ -267,8 +320,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let ticking = false;
   let isShrunk = false;
-  const ENTER_AT = 64;
-  const EXIT_AT  = 24;
+  const ENTER_AT = 64;  // start shrinking after 64px
+  const EXIT_AT  = 24;  // grow back under 24px
 
   function onScroll() {
     const y = window.scrollY || document.documentElement.scrollTop;

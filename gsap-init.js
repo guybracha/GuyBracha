@@ -1,160 +1,134 @@
-/* ===== GSAP for Guy Bracha Portfolio ===== */
+/* gsap-init.js
+   אנימציות גלובליות + חשיפות בגלילה + פירול אוטומטי
+*/
 (() => {
-  // הגנה ל־prefers-reduced-motion
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) {
-    // נאפס/נפשט אנימציות
-    gsap.globalTimeline.timeScale(2);
+  if (!window.gsap) return; // הגנה אם GSAP לא נטען
+  const { gsap } = window;
+  const hasReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const baseDur = hasReduced ? 0 : 0.9;
+  const ease = "power3.out";
+
+  // ===== Header shrink on scroll (לוגיקה קלה – אם תרצה להשאיר רק כאן ולהסיר מ-script.js) =====
+  const header = document.querySelector(".site-header");
+  if (header) {
+    const toggleShrink = () => {
+      const y = window.scrollY || window.pageYOffset;
+      header.classList.toggle("shrink", y > 40);
+    };
+    toggleShrink();
+    window.addEventListener("scroll", toggleShrink, { passive: true });
   }
 
-  /* -------- HERO (כותרת עליונה) -------- */
-  const tlHero = gsap.timeline({ defaults: { ease: "power2.out" } });
-
+  // ===== Hero intro (תמונה, כותרת, תת-כותרת, כפתורים) =====
+  const tlHero = gsap.timeline({ defaults: { ease, duration: baseDur } });
   tlHero
-    .set([".brand-title", ".brand-subtitle", ".btn-cta", ".header-avatar"], { opacity: 0, y: 20 })
-    .to(".brand-title",   { opacity: 1, y: 0, duration: .7 }, 0.1)
-    .to(".brand-subtitle",{ opacity: 1, y: 0, duration: .6 }, 0.25)
-    .to(".btn-cta",       { opacity: 1, y: 0, duration: .6, stagger: .08 }, 0.4)
-    .fromTo(".header-avatar",
-            { opacity: 0, y: 12, rotate: -2, scale: .98 },
-            { opacity: 1, y: 0, rotate: 0, scale: 1, duration: .7 }, 0.2);
+    .from(".header-avatar", { y: 20, opacity: 0 }, 0)
+    .from(".brand-title",   { y: 12, opacity: 0 }, 0.05)
+    .from(".brand-subtitle",{ y: 12, opacity: 0 }, 0.15)
+    .from(".site-header nav .btn-cta", {
+      opacity: 0, y: 10, stagger: 0.08
+    }, 0.25);
 
-  // הובר קטן ל־CTA
-  document.querySelectorAll(".btn-cta").forEach(btn => {
-    btn.addEventListener("pointerenter", () => gsap.to(btn, { y: -2, duration: .2 }));
-    btn.addEventListener("pointerleave", () => gsap.to(btn, { y: 0,  duration: .25 }));
-  });
-
-  /* -------- Projects (Cards) -------- */
-  // סטאגר על כל הכרטיסים כשנכנסים לתצוגה
-  gsap.set(".row .card", { opacity: 0, y: 24 });
-  ScrollTrigger.batch(".row .card", {
-    start: "top 85%",
-    once: true,
-    onEnter: batch => {
-      gsap.to(batch, {
-        opacity: 1, y: 0, duration: .6, ease: "power2.out", stagger: .08
-      });
-    }
-  });
-
-  // אפקט "טילט" עדין בהובר (למחשב בלבד)
-  const cards = document.querySelectorAll(".row .card");
-  cards.forEach(card => {
-    card.addEventListener("pointermove", (e) => {
-      const r = card.getBoundingClientRect();
-      const rx = ((e.clientX - r.left) / r.width - 0.5) * 6;
-      const ry = -((e.clientY - r.top) / r.height - 0.5) * 6;
-      gsap.to(card, { rotationY: rx, rotationX: ry, transformPerspective: 800, transformOrigin: "center", duration: .25 });
-    });
-    card.addEventListener("pointerleave", () => {
-      gsap.to(card, { rotationX: 0, rotationY: 0, duration: .35, ease: "power2.out" });
+  // ===== חשיפת כותרות/פסקאות/רשימות בכל הסקשנים =====
+  gsap.utils.toArray("section, article").forEach((sec) => {
+    const kids = sec.querySelectorAll("h2, h3, p, ul, ol");
+    if (!kids.length) return;
+    gsap.from(kids, {
+      opacity: 0,
+      y: 16,
+      stagger: 0.08,
+      duration: baseDur,
+      ease,
+      scrollTrigger: {
+        trigger: sec,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
     });
   });
 
-  /* -------- Graphic Designs (תמונות) -------- */
-  // חשיפת תמונה: המסכה נסוגה + פייד־אין
-  const revealImgs = gsap.utils.toArray(".design-img");
+  // ===== כרטיסים (Projects) – קפיצה רכה בעת כניסה לתצוגה =====
+  gsap.utils.toArray(".card").forEach((card) => {
+    gsap.from(card, {
+      opacity: 0,
+      y: 18,
+      duration: baseDur,
+      ease,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
+
+  // ===== חשיפת תמונות עם "מסכה" (הפס השחור שמחליק) =====
+  // עובד ע"י אנימציה של משתנה CSS --maskScaleX מ-1 ל-0
+  const revealImgs = document.querySelectorAll(".design-img");
   revealImgs.forEach((img) => {
-    // מצב התחלתי
-    gsap.set(img, { opacity: 0, scale: 1.03 });
-    // כשהתמונה נכנסת למסך
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: img, start: "top 85%", once: true }
+    // סט מראש (למקרה והדף נטען באמצע)
+    img.style.setProperty("--maskScaleX", "1");
+    gsap.to(img, {
+      "--maskScaleX": 0,
+      duration: baseDur + 0.2,
+      ease,
+      scrollTrigger: {
+        trigger: img,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+        onEnter: () => img.style.setProperty("--maskScaleX", "0"),
+        onLeaveBack: () => img.style.setProperty("--maskScaleX", "1"),
+      },
     });
-    tl.to(img, { opacity: 1, scale: 1, duration: .8, ease: "power2.out" }, 0)
-      .to(img, {
-        duration: 1,
-        ease: "power3.inOut",
-        onUpdate: function () {
-          // נזיז את ה"מסכה" (ה-::after) ע"י עדכון inline-style — טריק פשוט
-          img.style.setProperty("--maskScaleX", "0");
-        },
-        onStart: () => {
-          // פריים ראשון: נשבור את הטריק לערך 1 -> 0
-          img.style.setProperty("--maskScaleX", "1");
-        },
-        onComplete: () => {
-          // ניקוי: נעלים את הכיסוי לחלוטין
-          img.style.setProperty("--maskScaleX", "0");
-          img.style.setProperty("overflow", "visible");
-        }
-      }, 0);
+    gsap.from(img, {
+      opacity: 0,
+      y: 14,
+      duration: baseDur,
+      ease,
+      scrollTrigger: {
+        trigger: img,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
 
-    // נשתמש במשתנה לנהל את scaleX של ::after
+  // ===== אנימציית פתיחה למודאל (כשנפתח ב-script.js נצית קלאס is-open) =====
+  // נקשיב לשינויים ב-attribute של המודאל כדי להריץ אנימציה
+  const modal = document.querySelector(".custom-modal");
+  const modalBox = document.querySelector(".modal-box");
+  if (modal && modalBox) {
+    const openTl = gsap.timeline({ paused: true });
+    openTl
+      .fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" })
+      .from(modalBox, { y: 28, opacity: 0, duration: 0.35, ease }, 0);
+
     const obs = new MutationObserver(() => {
-      const v = img.style.getPropertyValue("--maskScaleX");
-      if (v) img.style.setProperty("--maskScaleX", v);
-    });
-    obs.observe(img, { attributes: true, attributeFilter: ["style"] });
-
-    // נרנדר את ה־::after לפי המשתנה (פעם אחת)
-    const style = document.createElement("style");
-    style.textContent = `
-      .design-img::after { transform: scaleX(var(--maskScaleX, 1)); }
-    `;
-    document.head.appendChild(style);
-  });
-
-  /* -------- Quotes/Headers קטנים בין סקשנים -------- */
-  gsap.utils.toArray("section h3, section h2").forEach((title) => {
-    gsap.from(title, {
-      scrollTrigger: { trigger: title, start: "top 85%", once: true },
-      y: 16, opacity: 0, duration: .6, ease: "power2.out"
-    });
-  });
-
-  /* -------- Modal Animations -------- */
-  const modal = document.getElementById("myModal");
-  const modalImg = document.getElementById("img01");
-  const caption = document.getElementById("caption");
-  const closeBtn = document.querySelector(".btn-close-modal");
-
-  // פותחים תמונה למודאל (אם כבר יש לך לוגיקה ב-script.js, זה משלים רק את האנימציה)
-  function openModalAnimation() {
-    gsap.killTweensOf(modal);
-    gsap.set(modal, { opacity: 0, display: "block" });
-    modal.classList.add("is-open");
-    gsap.fromTo(".modal-box",
-      { y: 20, opacity: 0, scale: .98 },
-      { y: 0, opacity: 1, scale: 1, duration: .35, ease: "power2.out" }
-    );
-    gsap.to(modal, { opacity: 1, duration: .25, ease: "power1.out" });
-  }
-  function closeModalAnimation() {
-    gsap.killTweensOf(modal);
-    const tl = gsap.timeline({
-      onComplete: () => {
-        modal.classList.remove("is-open");
-        gsap.set(modal, { display: "none" });
+      const isOpen = modal.classList.contains("is-open");
+      if (hasReduced) {
+        modal.style.opacity = isOpen ? "1" : "0";
+        return;
       }
+      if (isOpen) openTl.play(0);
+      else openTl.reverse();
     });
-    tl.to(".modal-box", { y: 10, opacity: 0, scale: .98, duration: .25, ease: "power1.in" })
-      .to(modal, { opacity: 0, duration: .2, ease: "power1.in" }, 0);
+    obs.observe(modal, { attributes: true, attributeFilter: ["class"] });
   }
 
-  // חיבור עדין — אם ה־script.js שלך כבר מטפל בפתיחה/סגירה, רק תחליף לקרוא לפונקציות האלה
-  if (modal && closeBtn) {
-    closeBtn.addEventListener("click", closeModalAnimation);
-    // ESC ליציאה
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModalAnimation();
+  // ===== פרלקסה קלה לכותרת (אופציונלי, עדין) =====
+  const heroBits = [".header-avatar", ".brand-title", ".brand-subtitle"];
+  heroBits.forEach((sel, i) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    gsap.to(el, {
+      yPercent: i === 0 ? -4 : -2,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.3,
+      },
     });
-    // קליק ברקע — סגירה
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModalAnimation();
-    });
-  }
-
-  // אקספורט קל לשימוש מתוך קבצים אחרים (למשל script.js שלך)
-  window.GBAnimations = {
-    openModalAnimation,
-    closeModalAnimation
-  };
-
-  /* -------- נגישות: דילוג אנימציות אם reduce-motion -------- */
-  if (reduceMotion) {
-    // נשבית טריגרים של גלילה כדי לא להעמיס
-    ScrollTrigger.getAll().forEach(st => st.disable());
-  }
+  });
 })();
