@@ -44,6 +44,123 @@
         transform: scaleX(var(--maskScaleX));
         pointer-events: none;
       }
+
+      /* תיבת תוכן */
+      .toc-container {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 15px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        margin: 3rem auto;
+        max-width: 1200px;
+      }
+      .toc-title {
+        color: white;
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      }
+      .toc-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .toc-grid {
+          gap: 0.8rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .toc-grid {
+          flex-direction: column;
+        }
+        .toc-container {
+          padding: 1.5rem;
+        }
+      }
+      .toc-link {
+        background: white;
+        color: #667eea;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+        min-height: 60px;
+        flex: 0 1 auto;
+      }
+      .toc-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        color: #764ba2;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      .toc-link:active {
+        transform: translateY(-1px);
+      }
+      .toc-icon {
+        font-size: 1.4rem;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+      }
+      .toc-link:hover .toc-icon {
+        transform: scale(1.2) rotate(5deg);
+      }
+      .toc-link span:last-child {
+        white-space: nowrap;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+      }
+      /* אנימציות כניסה לסקשנים */
+      section[id], article[id] {
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      /* כפתור חזרה למעלה */
+      #scrollToTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #scrollToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      #scrollToTop:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+      }
+      #scrollToTop:active {
+        transform: translateY(-2px);
+      }
     </style>
 </head>
 <body>
@@ -67,7 +184,40 @@
   </div>
 </header>
 
-<section class="container my-5">
+<!-- Table of Contents -->
+<div class="container">
+  <nav class="toc-container" aria-label="Table of Contents">
+    <h2 class="toc-title">📋 Quick Navigation</h2>
+    <div class="toc-grid">
+      <a href="#about" class="toc-link">
+        <span class="toc-icon">👤</span>
+        <span>About Me</span>
+      </a>
+      <a href="#education" class="toc-link">
+        <span class="toc-icon">🎓</span>
+        <span>Education</span>
+      </a>
+      <a href="#experience" class="toc-link">
+        <span class="toc-icon">💼</span>
+        <span>Work Experience</span>
+      </a>
+      <a href="#projects" class="toc-link">
+        <span class="toc-icon">🚀</span>
+        <span>Projects</span>
+      </a>
+      <a href="#skills" class="toc-link">
+        <span class="toc-icon">⚡</span>
+        <span>Skills</span>
+      </a>
+      <a href="#designs" class="toc-link">
+        <span class="toc-icon">🎨</span>
+        <span>Graphic Designs</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<section id="about" class="container my-5">
   <p>Everything starts with an idea... - Earl Nightingale</p>
   <h3>About Me</h3>
   <p>
@@ -85,7 +235,7 @@
   </p>
 </section>
 
-<section class="bg-light p-5">
+<section id="education" class="bg-light p-5">
   <h3>Education</h3>
   <ul>
     <li>2016 - Graduated from Hadash High School, Herzliya</li>
@@ -93,7 +243,7 @@
   </ul>
 </section>
 
-<section class="p-5">
+<section id="experience" class="p-5">
   <h3>Work Experience</h3>
   <ul>
     <li>2017-2019: Civil Service (She'rot Le'umi) - Access Israel</li>
@@ -102,7 +252,7 @@
   </ul>
 </section>
 
-<section class="container my-5">
+<section id="projects" class="container my-5">
   <h2 class="display-4 text-center text-danger mb-5">🚀 Projects</h2>
 
   <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -213,7 +363,7 @@
     </div>
   </div>
 </section>
-<article class="container my-5">
+<article id="skills" class="container my-5">
     <h2>Skills</h2>
     <ul>
       <li>Languages: JavaScript, TypeScript, Python, C#</li>
@@ -226,7 +376,7 @@
       <li>AI: Chat GPT, Dall-e, Midjourney</li>
 </article>
 
-<section class="bg-light p-5">
+<section id="designs" class="bg-light p-5">
   <h3 class="display-4 text-center mb-5 text-dark">🎨 Graphic Designs</h3>
 
   <!-- פרויקט גמר -->
@@ -332,6 +482,9 @@
   <p>Contact for Business Inquiries</p>
   <a href="mailto:guy.bracha@gmail.com" class="btn btn-outline-light">Email Me</a>
 </footer>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" aria-label="Scroll to top">↑</button>
 
 <!-- Modal -->
 <div id="myModal" class="custom-modal" tabindex="-1" aria-hidden="true">

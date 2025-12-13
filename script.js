@@ -341,3 +341,32 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', requestTick, { passive: true });
   onScroll();
 })();
+
+// ==================== Scroll to Top Button ====================
+(() => {
+  const scrollBtn = document.getElementById('scrollToTop');
+  if (!scrollBtn) return;
+
+  // Show/hide button based on scroll position
+  function toggleScrollButton() {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add('show');
+    } else {
+      scrollBtn.classList.remove('show');
+    }
+  }
+
+  // Smooth scroll to top
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  window.addEventListener('scroll', toggleScrollButton, { passive: true });
+  scrollBtn.addEventListener('click', scrollToTop);
+  
+  // Initial check
+  toggleScrollButton();
+})();
