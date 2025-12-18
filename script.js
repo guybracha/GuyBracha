@@ -158,10 +158,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- Open from thumbnails ----------
   document.body.addEventListener('click', (e) => {
-    const img = e.target.closest('.design-img');
+    // Check if clicked element is an image or inside a graphics-card
+    let img = e.target.closest('.design-img');
+    
+    // If not found, check if we clicked on the card itself
+    if (!img) {
+      const card = e.target.closest('.graphics-card');
+      if (card) {
+        img = card.querySelector('.design-img');
+      }
+    }
+    
     if (!img) return;
+    
+    console.log('Image clicked:', img.src); // Debug
     const group = img.dataset.group || 'all';
     const index = (groups[group] || []).indexOf(img);
+    console.log('Opening modal for group:', group, 'index:', index); // Debug
     openModalByIndex(group, index);
   });
 
