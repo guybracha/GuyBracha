@@ -383,3 +383,108 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial check
   toggleScrollButton();
 })();
+
+// ==================== Art Gallery Dynamic Generation ====================
+(() => {
+  const artImages = [
+    {
+      filename: 'allStarSpectrumMan.webp',
+      alt: 'All Star Spectrum Man',
+      title: 'All Star Spectrum Man'
+    },
+    {
+      filename: 'arizona.webp',
+      alt: 'Arizona',
+      title: 'Arizona'
+    },
+    {
+      filename: 'aWiderCircle.webp',
+      alt: 'A Wider Circle',
+      title: 'A Wider Circle'
+    },
+    {
+      filename: 'compassCrew.webp',
+      alt: 'Compass Crew',
+      title: 'Compass Crew'
+    },
+    {
+      filename: 'Disney.webp',
+      alt: 'Disney',
+      title: 'Disney'
+    },
+    {
+      filename: 'hanukkah.webp',
+      alt: 'Hanukkah',
+      title: 'Hanukkah'
+    },
+    {
+      filename: 'jimHenson.webp',
+      alt: 'Jim Henson',
+      title: 'Jim Henson'
+    },
+    {
+      filename: 'longTomorrow.webp',
+      alt: 'Long Tomorrow',
+      title: 'Long Tomorrow'
+    },
+    {
+      filename: 'pirates.webp',
+      alt: 'Pirates',
+      title: 'Pirates'
+    },
+    {
+      filename: 'powerpoint.webp',
+      alt: 'PowerPoint',
+      title: 'PowerPoint'
+    },
+    {
+      filename: 'stoneMask.webp',
+      alt: 'Stone Mask',
+      title: 'Stone Mask'
+    },
+    {
+      filename: 'UniteColShade.webp',
+      alt: 'Unite Color and Shade',
+      title: 'Unite Color and Shade'
+    },
+    {
+      filename: 'youngAndAmbitious.webp',
+      alt: 'Young and Ambitious',
+      title: 'Young and Ambitious'
+    }
+  ];
+
+  const container = document.getElementById('artGalleryContainer');
+  if (!container) return;
+
+  // יצירת כרטיסי התמונות
+  artImages.forEach((image) => {
+    const col = document.createElement('div');
+    col.className = 'col';
+
+    const card = document.createElement('div');
+    card.className = 'card h-100 shadow-sm';
+
+    const img = document.createElement('img');
+    img.src = `contents/art/${image.filename}`;
+    img.className = 'card-img-top design-img';
+    img.alt = image.alt;
+    img.dataset.group = 'art-gallery';
+    img.style.cursor = 'pointer';
+    img.style.height = '300px';
+    img.style.objectFit = 'cover';
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    const cardTitle = document.createElement('h5');
+    cardTitle.className = 'card-title text-center';
+    cardTitle.textContent = image.title;
+
+    cardBody.appendChild(cardTitle);
+    card.appendChild(img);
+    card.appendChild(cardBody);
+    col.appendChild(card);
+    container.appendChild(col);
+  });
+})();
