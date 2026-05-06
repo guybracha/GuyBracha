@@ -1119,3 +1119,140 @@ footer a { font-size: var(--fs-base); }
     gap: 1rem;
   }
 }
+
+/* -------------------------------------------------------
+   Inline Styles from HTML - Moved to External CSS
+------------------------------------------------------- */
+
+/* תיבת תוכן - Table of Contents */
+.toc-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin: 3rem auto;
+  max-width: 1200px;
+}
+
+.toc-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.toc-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.toc-link {
+  background: white;
+  color: #667eea;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  min-height: 60px;
+  flex: 0 1 auto;
+}
+
+.toc-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  color: #764ba2;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.toc-link:active {
+  transform: translateY(-1px);
+}
+
+.toc-icon {
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toc-link:hover .toc-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.toc-link span:last-child {
+  white-space: nowrap;
+}
+
+/* Responsive TOC */
+@media (max-width: 768px) {
+  .toc-grid {
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .toc-grid {
+    flex-direction: column;
+  }
+  .toc-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Smooth scrolling and section transitions */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+section[id], article[id] {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* כפתור חזרה למעלה - Scroll to Top */
+#scrollToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#scrollToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#scrollToTop:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+}
+
+#scrollToTop:active {
+  transform: translateY(-2px);
+}

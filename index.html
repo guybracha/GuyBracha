@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Guy Bracha</title>
-    <meta name="description" content="The official website of Guy Bracha – showcasing comics, design, and creative projects. Explore stories, characters, and artwork." />
+    <title>Guy Bracha - Graphic Designer & Character Artist</title>
+    <meta name="description" content="The official portfolio of Guy Bracha – showcasing character design, comic art, and visual storytelling. Explore original superhero worlds, illustrations, and creative projects." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,154 +14,6 @@
     <script src="script.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
-
-    <!-- חיזוקי CSS קלים (אפשר להעביר ל-style.css אם תרצה) -->
-    <style>
-      /* ביצועים — רמיזות לדפדפן */
-      .header-avatar, .brand-title, .brand-subtitle, .btn-cta, .card, .design-img {
-        will-change: transform, opacity;
-      }
-      /* הובר נעים ל-CTA */
-      .btn-cta { transition: transform .2s ease; }
-      .btn-cta:focus-visible { outline: 2px solid var(--bs-warning); outline-offset: 2px; }
-
-      /* מודאל — GSAP מוסיף/מסיר is-open */
-      .custom-modal { opacity: 0; pointer-events: none; }
-      .custom-modal.is-open { pointer-events: auto; }
-
-      /* חשיפת תמונות ב-GSAP (משתמש במשתנה --maskScaleX) */
-      .design-img {
-        position: relative;
-        display: block;
-        overflow: hidden;
-        --maskScaleX: 1; /* מצב התחלתי: המסכה מכסה */
-      }
-      .design-img::after {
-        content: "";
-        position: absolute; inset: 0;
-        background: #0b0b0b;
-        transform-origin: left center;
-        transform: scaleX(var(--maskScaleX));
-        pointer-events: none;
-      }
-
-      /* תיבת תוכן */
-      .toc-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 15px;
-        padding: 2.5rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        margin: 3rem auto;
-        max-width: 1200px;
-      }
-      .toc-title {
-        color: white;
-        font-weight: bold;
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      }
-      .toc-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-        width: 100%;
-      }
-      @media (max-width: 768px) {
-        .toc-grid {
-          gap: 0.8rem;
-        }
-      }
-      @media (max-width: 480px) {
-        .toc-grid {
-          flex-direction: column;
-        }
-        .toc-container {
-          padding: 1.5rem;
-        }
-      }
-      .toc-link {
-        background: white;
-        color: #667eea;
-        padding: 1rem 1.5rem;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.7rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        text-align: center;
-        min-height: 60px;
-        flex: 0 1 auto;
-      }
-      .toc-link:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        color: #764ba2;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      }
-      .toc-link:active {
-        transform: translateY(-1px);
-      }
-      .toc-icon {
-        font-size: 1.4rem;
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
-      }
-      .toc-link:hover .toc-icon {
-        transform: scale(1.2) rotate(5deg);
-      }
-      .toc-link span:last-child {
-        white-space: nowrap;
-      }
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 100px;
-      }
-      /* אנימציות כניסה לסקשנים */
-      section[id], article[id] {
-        transition: opacity 0.4s ease, transform 0.4s ease;
-      }
-
-      /* כפתור חזרה למעלה */
-      #scrollToTop {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 24px;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #scrollToTop.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      #scrollToTop:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
-      }
-      #scrollToTop:active {
-        transform: translateY(-2px);
-      }
-    </style>
 </head>
 <body>
 <header class="site-header">
@@ -173,11 +25,10 @@
       <!-- טקסט וכפתורים -->
       <div class="flex-fill order-1 order-md-0 w-100">
         <h1 class="brand-title mb-1">Guy Bracha</h1>
-        <p class="brand-subtitle mb-3 mb-md-4">Portfolio Site</p>
+        <p class="brand-subtitle mb-3 mb-md-4">Graphic Designer | Character Artist | Visual Storyteller</p>
         <nav class="d-flex flex-wrap gap-2">
           <a href="mailto:guy.bracha@gmail.com" class="btn btn-cta">Contact Me</a>
           <a href="https://www.linkedin.com/in/guy-bracha-b44b34244/" class="btn btn-cta">LinkedIn</a>
-          <a href="https://github.com/guybracha" class="btn btn-cta">GitHub</a>
         </nav>
       </div>
     </div>
@@ -193,21 +44,9 @@
         <span class="toc-icon">👤</span>
         <span>About Me</span>
       </a>
-      <a href="#education" class="toc-link">
-        <span class="toc-icon">🎓</span>
-        <span>Education</span>
-      </a>
       <a href="#experience" class="toc-link">
         <span class="toc-icon">💼</span>
-        <span>Work Experience</span>
-      </a>
-      <a href="#projects" class="toc-link">
-        <span class="toc-icon">🚀</span>
-        <span>Projects</span>
-      </a>
-      <a href="#skills" class="toc-link">
-        <span class="toc-icon">⚡</span>
-        <span>Skills</span>
+        <span>Experience</span>
       </a>
       <a href="#designs" class="toc-link">
         <span class="toc-icon">🎨</span>
@@ -222,208 +61,54 @@
 </div>
 
 <section id="about" class="container my-5">
-  <p>Everything starts with an idea... - Earl Nightingale</p>
-  <h3>About Me</h3>
+  <p>"Everything starts with an idea..." - Earl Nightingale</p>
+  <h3>Visual Storytelling That Brings Your Brand to Life</h3>
   <p>
-    My name is Guy Bracha, a 27-year-old software engineer from Herzliya, Israel.
+    I'm <strong>Guy Bracha</strong>, a graphic designer and visual storyteller based in Herzliya, Israel, specializing in <strong>character design, brand identity, and creative marketing materials</strong>.
+    <br><br>
+    <strong>What I Offer:</strong>
     <br>
-    I recently graduated in Software Engineering from a technical college, where I gained hands-on experience in designing and developing modern applications.
+    ✦ <strong>Character Design & Illustration</strong> – Bring your characters and stories to life with unique, memorable designs
     <br>
-    I have a strong passion for computers, gaming, and web development, and I enjoy combining creativity with technology to build engaging digital experiences. Over the past few years, I have worked on diverse projects ranging from full-stack web applications to interactive front-end interfaces, often using React, Node.js, Firebase, and cloud technologies.
+    ✦ <strong>Brand Identity & Logo Design</strong> – Create cohesive visual identities that make your brand stand out
     <br>
-    In addition to my technical skills, I’m curious and constantly exploring new tools and approaches — including AI technologies such as GPT and Midjourney — to enhance creativity, speed up workflows, and deliver unique results.
+    ✦ <strong>Marketing & Advertising Materials</strong> – Design eye-catching visuals for print, digital, and social media
     <br>
-    What excites me most is the opportunity to learn, adapt, and grow while contributing to meaningful projects. I’m highly motivated, detail-oriented, and driven to bring value both independently and as part of a team.
+    ✦ <strong>Comic Art & Sequential Storytelling</strong> – Develop engaging visual narratives with manga-inspired layouts
     <br>
-    Beyond my professional work, I also enjoy creating comics and drawing in my free time, which allows me to express creativity visually and bring imaginative ideas to life.
+    ✦ <strong>Pop Art & Illustration</strong> – Bold, vibrant designs that make an impact
+    <br><br>
+    <strong>My Approach:</strong>
+    <br>
+    I combine creative vision with technical precision, using <strong>Adobe Illustrator, Photoshop, and InDesign</strong> to deliver professional results. Drawing inspiration from filmmakers like David Lynch and Terry Gilliam, as well as anime aesthetics from Naruto and JoJo's Bizarre Adventure, I create designs that tell compelling stories.
+    <br><br>
+    I also leverage cutting-edge AI tools like <strong>Midjourney and ChatGPT</strong> to explore innovative concepts and accelerate the creative process, ensuring every project is both unique and efficiently delivered.
+    <br><br>
+    Whether you need a complete brand identity, character designs for your project, or marketing materials that convert, I'm here to transform your vision into stunning visual reality.
+    <br><br>
+    <strong>Let's create something extraordinary together.</strong>
   </p>
 </section>
 
-<section id="education" class="bg-light p-5">
-  <h3>Education</h3>
+<section id="experience" class="bg-light p-5">
+  <h3>Professional Experience</h3>
   <ul>
-    <li>2016 - Graduated from Hadash High School, Herzliya</li>
-    <li>2022-2025 - Graduate with Diploma, Practical Software Engineering at a Technical College in Ariel University. Registered Engieneer in Israeli Ministry of Labor.</li>
+    <li><strong>2025:</strong> Graphic Designer at Karina Printed Shirts – Creating marketing materials, website layouts, and brand identity designs</li>
+    <li><strong>2017-2019:</strong> Civil Service (She'rot Le'umi) at Access Israel – Supporting accessibility initiatives</li>
   </ul>
 </section>
 
-<section id="experience" class="p-5">
-  <h3>Work Experience</h3>
-  <ul>
-    <li>2017-2019: Civil Service (She'rot Le'umi) - Access Israel</li>
-    <li>2021-2022: Cyber Analyst at Cellcom</li>
-    <li>2025: Webaster and Graphic editor at Karina Printed Shirts</li>
-  </ul>
-</section>
-
-<section id="projects" class="container my-5">
-  <h2 class="display-4 text-center text-danger mb-5">🚀 Projects</h2>
-
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <!-- פרויקט לדוגמה -->
-    <div class="col">
-      <div class="card border-danger h-100">
-        <div class="card-body">
-          <h5 class="card-title text-danger">Compass World</h5>
-          <p class="card-text">HTML, CSS, JS, Bootstrap</p>
-          <a href="https://github.com/guybracha/compass-world" class="btn btn-outline-primary btn-sm" target="_blank">Source Code</a>
-          <a href="https://guybracha.github.io/compass-world/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- המשך הפרויקטים באותו מבנה -->
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Student Form</h5>
-          <p class="card-text">C#</p>
-          <a href="https://github.com/guybracha/StudentForm" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100 border-success">
-        <div class="card-body">
-          <h5 class="card-title text-success">Python Collection</h5>
-          <p class="card-text">Python</p>
-          <a href="https://github.com/guybracha/PythonCollection" class="btn btn-outline-success btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100 border-info">
-        <div class="card-body">
-          <h5 class="card-title text-info">Dunder Mifflin</h5>
-          <p class="card-text">HTML, CSS, JS</p>
-          <a href="https://github.com/guybracha/dunder-mifflin" class="btn btn-outline-info btn-sm" target="_blank">Source Code</a>
-          <a href="https://guybracha.github.io/dunder-mifflin/" class="btn btn-info btn-sm ms-2" target="_blank">Live Site</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Comixiad</h5>
-          <p class="card-text">React js, Node.js, Express</p>
-          <a href="https://github.com/guybracha/comixiad" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          <a href="https://comixiad.com/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">TypeScript Project</h5>
-          <p class="card-text">TypeScript, Html, JavaScript, Css</p>
-          <a href="https://github.com/guybracha/tsProject" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Karina Site</h5>
-          <p class="card-text">React.js, Html, Css, bootstrap, Firebase (DB, Storage, Auth), Google Cloud Functions, API</p>
-          <a href="https://github.com/guybracha/Karina" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          <a href="http://karina.co.il/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Python Game - Underwater Adventures</h5>
-          <p class="card-text">Python.turtle</p>
-          <a href="https://github.com/guybracha/Underwater-Adventures" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          <a href="https://guy-bracha.itch.io/underwater-adventure" class="btn btn-outline-dark btn-sm" target="_blank">Download Link</a>
-        </div>
-      </div>
-    </div>
-     <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Compass World V2.0</h5>
-          <p class="card-text">Astro Build, GSAP, MDX, TS, JavaScript, Bootstrap</p>
-          <a href="https://github.com/guybracha/compass-world-astro" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          <a href="https://guybracha.github.io/compass-world-astro/" class="btn btn-outline-dark btn-sm" target="_blank">Live Site</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">CRM Project</h5>
-          <p class="card-text">React.js, Css, Bootstrap, Firebase</p>
-          <a href="https://github.com/guybracha/karinaCrm2" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">C# final Project</h5>
-          <p class="card-text">C#, UI.net</p>
-          <a href="https://github.com/guybracha/FinalProject" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">python final Project</h5>
-          <p class="card-text">python</p>
-          <a href="https://github.com/guybracha/Supermarket" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Design Patterns final project</h5>
-          <p class="card-text">Java</p>
-          <a href="https://github.com/guybracha/ZooSystem" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Operating Systems final project</h5>
-          <p class="card-text">C language</p>
-          <a href="https://github.com/guybracha/OS_Proj" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-secondary">
-        <div class="card-body">
-          <h5 class="card-title">Punkontrol Web project</h5>
-          <p class="card-text">React.js (front), firebase (backend)</p>
-          <a href="https://github.com/guybracha/punkontrolWeb" class="btn btn-outline-dark btn-sm" target="_blank">Source Code</a>
-          <a href="https://punkontrol.web.app/" class="btn btn-primary btn-sm ms-2" target="_blank">Live Site</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <article id="skills" class="container my-5">
-    <h2>Skills</h2>
+    <h2>Creative Skills & Tools</h2>
     <ul>
-      <li>Languages: JavaScript, TypeScript, Python, C#</li>
-      <li>Web Technologies: HTML5, CSS3, Bootstrap, React.js, Node.js, Express.js</li>
-      <li>Databases: Firebase, MongoDB</li>
-      <li>Tools & Platforms: Git, GitHub, VS Code, Postman</li>
-      <li>Cloud Services: Firebase Hosting, Netlify, Github Pages</li>
-      <li>Design Software: Adobe Illustrator, Photoshop, Indesign</li>
-      <li>Other: GSAP for animations, Astro Build for static sites</li>
-      <li>AI: Chat GPT, Google Gemini, Nano Banana, Midjourney, GitHub Copilot Agent</li>
+      <li><strong>Design Software:</strong> Adobe Illustrator (Vector Art), Adobe Photoshop (Image Editing), Adobe InDesign (Layout Design)</li>
+      <li><strong>Character Design:</strong> Original superhero characters, costume design, visual identity systems</li>
+      <li><strong>Comic Art:</strong> Panel layouts, sequential storytelling, manga-inspired aesthetics</li>
+      <li><strong>World Building:</strong> Universe creation, power systems, narrative structures</li>
+      <li><strong>Branding & Marketing:</strong> Logo design, advertising materials, website layouts</li>
+      <li><strong>AI Tools:</strong> Midjourney (Visual Generation), ChatGPT (Creative Development), GitHub Copilot</li>
+      <li><strong>Visual Influences:</strong> David Lynch, Terry Gilliam, Brian De Palma, Naruto, Fullmetal Alchemist, JoJo's Bizarre Adventure</li>
+    </ul>
 </article>
 
 <section id="designs" class="bg-light p-5">
@@ -693,6 +378,70 @@
         <img src="contents/backpage.webp" alt="Backpage" class="design-img" data-group="artwork">
         <div class="graphics-card-overlay">
           <span class="graphics-card-icon">📄</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop Art Gallery -->
+  <div class="container graphics-gallery mb-5">
+    <div class="graphics-section-header text-center mb-4">
+      <h4 class="graphics-section-title">Pop Art Collection</h4>
+      <p class="graphics-section-subtitle">Bold colors and iconic cultural imagery</p>
+    </div>
+    <div class="gallery-grid gallery-grid-3">
+      <div class="graphics-card">
+        <img src="contents/popart/pop art justice league of america.webp" alt="Justice League of America Pop Art" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🦸</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art justice league of america gold.webp" alt="Justice League of America Gold Edition" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">⭐</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art jla jsa.webp" alt="JLA JSA Pop Art" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🎨</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art compass alliance 1.webp" alt="Compass Alliance Pop Art 1" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🧭</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art compass alliance 2.webp" alt="Compass Alliance Pop Art 2" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🧭</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art yael shelbia.webp" alt="Yael Shelbia Pop Art" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">💫</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art Svika Pick.webp" alt="Svika Pick Pop Art" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🎤</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art donnie darko.webp" alt="Donnie Darko Pop Art" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🐰</span>
+        </div>
+      </div>
+      <div class="graphics-card">
+        <img src="contents/popart/pop art amadeus.webp" alt="Amadeus Pop Art" class="design-img" data-group="popart">
+        <div class="graphics-card-overlay">
+          <span class="graphics-card-icon">🎼</span>
         </div>
       </div>
     </div>
