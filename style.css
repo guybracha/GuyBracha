@@ -480,8 +480,6 @@ a {
   margin-left: 0;
 }
 
-header { /* using the enhanced header styles above */ }
-
 footer a { font-size: var(--fs-base); }
 
 /* Keep .custom-img as a centered container but nicer look handled above */
@@ -680,7 +678,7 @@ footer a { font-size: var(--fs-base); }
 .brand-subtitle{
   font-size: var(--subtitle-size);
   line-height: 1.2;
-  opacity: calc(var(--subtitle-size) > 0 ? 1 : 0);
+  opacity: 1;
   transition: font-size .28s ease, opacity .28s ease;
 }
 
@@ -920,6 +918,7 @@ footer a { font-size: var(--fs-base); }
   padding: 2px;
   background: linear-gradient(135deg, var(--primary), var(--primary-2), var(--accent));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -1255,4 +1254,28 @@ section[id], article[id] {
 
 #scrollToTop:active {
   transform: translateY(-2px);
+}
+
+/* Prevent double-tap UX issues on touch/mobile devices */
+@media (max-width: 767px) {
+  .graphics-card-overlay {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+    opacity: 1;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+  }
+
+  .graphics-card-overlay::after {
+    content: 'Tap to view';
+    font-size: 0.75rem;
+  }
+
+  .graphics-card-icon,
+  .graphics-card-number {
+    display: none;
+  }
+
+  .graphics-card:hover img {
+    transform: none;
+  }
 }
