@@ -64,6 +64,22 @@ Reach out through:
 
 ---
 
+## 🛠 Development
+
+The site is built with **Next.js (App Router, TypeScript)** and exported as static HTML for GitHub Pages.
+
+```bash
+npm install
+npm run dev      # http://localhost:3000/GuyBracha
+npm run build    # static site in ./out
+```
+
+- Content lives in `src/data/projects.ts` (projects & galleries) and `src/data/site.ts` (bio, experience, links).
+- Images go in `public/contents/`. `scripts/generate-thumbs.mjs` runs before every dev/build and creates web-sized thumbnails plus image dimensions; originals are only loaded in the lightbox.
+- Pushing to `main` deploys via `.github/workflows/deploy.yml` (Settings → Pages → Source: **GitHub Actions**).
+
+---
+
 ## 🧾 License
 
 This project is distributed under the **MIT License** (or other license if you prefer).  
