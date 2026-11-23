@@ -9,7 +9,7 @@ export const site = {
   github: "https://github.com/guybracha",
   cv: "/contents/Guy_Bracha_CV.pdf",
   portrait: "/contents/profile.webp",
-  url: "https://guybracha.github.io/GuyBracha",
+  url: "https://guy-bracha.vercel.app",
   quote: { text: "Everything starts with an idea.", author: "Earl Nightingale" },
 };
 
