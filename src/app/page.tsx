@@ -1,13 +1,11 @@
 import { Reveal } from "@/components/Reveal";
-import { WorkGrid } from "@/components/WorkGrid";
-import { ArrowRight, ArrowUpRight, Mail } from "@/components/Icons";
-import { asset } from "@/data/projects";
+import { ProjectCard } from "@/components/ProjectCard";
+import { ArrowRight, Mail } from "@/components/Icons";
+import { asset, projects } from "@/data/projects";
 import {
-  codeProjects,
   disciplines,
   education,
   experience,
-  influences,
   site,
   strengths,
   tools,
@@ -24,10 +22,16 @@ export default function Home() {
           <div className="section-head">
             <div>
               <span className="eyebrow">Selected work</span>
-              <h2 className="section-title">Projects &amp; pieces</h2>
+              <h2 className="section-title">Projects</h2>
             </div>
           </div>
-          <WorkGrid />
+          <div className="work-grid">
+            {projects.map((p, i) => (
+              <Reveal key={p.title} delay={(i % 2) * 90}>
+                <ProjectCard project={p} index={i} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
       <About />
@@ -45,7 +49,7 @@ function Hero() {
             {site.role} — {site.location}
           </span>
           <h1 className="hero-title">
-            Visuals that <em>pop</em>, built by a designer who{" "}
+            Design that <em>pops</em>, by a designer who{" "}
             <span className="scribble">speaks dev.</span>
           </h1>
           <p className="hero-lede">{site.tagline}</p>
@@ -63,16 +67,16 @@ function Hero() {
           <div className="portrait-dots" aria-hidden="true" />
           <div className="portrait-frame">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/thumbs/profile.webp")} alt="Portrait of Guy Bracha" width={1200} height={1200} />
+            <img src={asset(site.portrait)} alt="Portrait of Guy Bracha" width={1836} height={1836} />
           </div>
           <div className="bubble">
             <span className="dot" aria-hidden="true" />
             Open to work!
           </div>
           <div className="sticker" aria-hidden="true">
-            Game
+            UI / UX
             <br />
-            art &amp;
+            &amp;
             <br />
             brand
           </div>
@@ -112,33 +116,23 @@ function About() {
           </Reveal>
           <Reveal className="about-text" delay={100}>
             <p>
-              I&rsquo;m <strong>Guy Bracha</strong>, a marketing-minded graphic designer and illustrator
-              based in Herzliya, with a background in <strong>software engineering</strong>.
+              I&rsquo;m <strong>Guy Bracha</strong>, a marketing-minded graphic designer based in
+              Herzliya, with a background in <strong>software engineering</strong>.
             </p>
             <p>
               I turn ideas into high-impact visual assets — monetization banners, live-ops promos,
-              brand systems and characters — and I build them in a way developers love to receive:
-              organised layers, clean exports, no surprises.
+              brand systems and website layouts — and I build them in a way developers love to
+              receive: organised layers, clean exports, no surprises.
             </p>
             <p>
-              On the side I&rsquo;m building <strong>Compass Alliance</strong>, an original superhero
-              universe inspired by cinema and manga.
+              I&rsquo;m currently studying <strong>graphic design and UI/UX at Studio 6B</strong> in
+              Tel Aviv (2026 — 2027).
             </p>
             <div className="meta-rows">
               <div className="meta-row">
                 <h4>Tools</h4>
                 <div className="chips">
                   {tools.map((t) => (
-                    <span key={t} className="chip">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="meta-row">
-                <h4>Influences</h4>
-                <div className="chips">
-                  {influences.map((t) => (
                     <span key={t} className="chip">
                       {t}
                     </span>
@@ -196,21 +190,6 @@ function Experience() {
           <Timeline title="Education" items={education} />
         </div>
 
-        <Reveal className="code-block" delay={60}>
-          <div style={{ marginTop: "clamp(56px, 8vw, 96px)" }}>
-            <span className="eyebrow">Also building</span>
-            <div className="code-list">
-              {codeProjects.map((c) => (
-                <a key={c.title} className="code-item" href={c.href} target="_blank" rel="noreferrer">
-                  <strong>
-                    {c.title} <ArrowUpRight className="inline-icon" />
-                  </strong>
-                  <span>{c.stack}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

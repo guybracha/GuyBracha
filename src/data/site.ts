@@ -1,8 +1,8 @@
 export const site = {
   name: "Guy Bracha",
-  role: "Graphic Designer & Illustrator",
+  role: "Graphic & UI/UX Designer",
   tagline:
-    "Bold visuals for games, brands and stories — from monetization banners to entire superhero universes.",
+    "Clear, bold design for brands and digital products — from marketing assets and monetization visuals to website layouts.",
   location: "Herzliya, Israel",
   email: "guy.bracha@gmail.com",
   linkedin: "https://www.linkedin.com/in/guy-bracha-b44b34244/",
@@ -14,14 +14,13 @@ export const site = {
 };
 
 export const disciplines = [
-  "Character Design",
-  "Casual Game Art",
-  "Monetization Visuals",
+  "UI / UX Design",
+  "Web Layouts",
   "Brand Identity",
-  "Comic Art",
-  "UI Layouts",
-  "Pop Art",
-  "World Building",
+  "Monetization Visuals",
+  "Marketing Assets",
+  "Typography",
+  "Front-End Development",
 ];
 
 export const strengths = [
@@ -47,15 +46,6 @@ export const tools = [
   "ChatGPT",
   "GitHub Copilot",
   "HTML / CSS / React",
-];
-
-export const influences = [
-  "David Lynch",
-  "Terry Gilliam",
-  "Brian De Palma",
-  "Naruto",
-  "Fullmetal Alchemist",
-  "JoJo's Bizarre Adventure",
 ];
 
 export type TimelineItem = {
@@ -88,6 +78,12 @@ export const experience: TimelineItem[] = [
 
 export const education: TimelineItem[] = [
   {
+    period: "2026 — 2027",
+    title: "Graphic Design & UI/UX Studies",
+    org: "Studio 6B, Tel Aviv",
+    body: "Currently studying graphic design and taking a UI/UX course.",
+  },
+  {
     period: "2022 — 2025",
     title: "Diploma in Software Engineering",
     org: "Ariel Technical College",
@@ -98,20 +94,5 @@ export const education: TimelineItem[] = [
     title: "Design Frameworks",
     org: "Self-directed & courses",
     body: "Typography, visual hierarchy, vector rendering and commercial layout systems.",
-  },
-];
-
-export const codeProjects = [
-  { title: "Comixiad", stack: "React · Node · MongoDB", href: "https://comixiad.com" },
-  { title: "Karina.co.il", stack: "React · Bootstrap", href: "https://karina.co.il" },
-  {
-    title: "Compass World v2",
-    stack: "Astro · GSAP · MDX",
-    href: "https://guybracha.github.io/compass-world-astro/",
-  },
-  {
-    title: "Underwater Adventure",
-    stack: "Python game",
-    href: "https://guy-bracha.itch.io/underwater-adventure",
   },
 ];

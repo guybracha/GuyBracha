@@ -21,8 +21,13 @@ My creative projects focus on original superhero worlds, character development, 
 
 ## 💼 Professional Experience
 
-- **2025-today** – Graphic Designer, Karina Printed Shirts
+- **2025-today** – Webmaster & Graphic Designer, Karina Printed Shirts
 - **2017-2019** – National Service, Israel Accessibility Services
+
+## 🎓 Education
+
+- **2026-2027** – Graphic Design & UI/UX Studies, Studio 6B, Tel Aviv
+- **2022-2025** – Diploma in Software Engineering, Ariel Technical College
 
 ---
 
@@ -41,15 +46,6 @@ Here are some highlights from my portfolio:
 | **Karina Site** | React, HTML, CSS, Bootstrap | [Live Site](https://karina.co.il) |
 | **Python Game – Underwater Adventures** | Python (turtle) | [Download](https://guy-bracha.itch.io/underwater-adventure) |
 | **Compass World** V2 | Astro Build, GSAP, MDX, Typescript, JavaScript, Bootstrap, Json | [Live Site](https://guybracha.github.io/compass-world-astro/) |
-
----
-
-## 🎨 Graphic Design Work
-
-- **Justice League Vector Fanart** (Nov 2022) – Adobe Illustrator vector art  
-- **Final Project: “KISS” Band Website** – UI/UX and full mockup design  
-- **Compass Alliance ID** – Visual identity for the Compass World project  
-- **Website Layouts & Branding** – including **Karina.co.il**  
 
 ---
 
@@ -74,8 +70,8 @@ npm run dev      # http://localhost:3000/GuyBracha
 npm run build    # static site in ./out
 ```
 
-- Content lives in `src/data/projects.ts` (projects & galleries) and `src/data/site.ts` (bio, experience, links).
-- Images go in `public/contents/`. `scripts/generate-thumbs.mjs` runs before every dev/build and creates web-sized thumbnails plus image dimensions; originals are only loaded in the lightbox.
+- Content lives in `src/data/projects.ts` (projects & links) and `src/data/site.ts` (bio, experience, education).
+- Static files (portrait, CV) live in `public/contents/`.
 - Pushing to `main` deploys via `.github/workflows/deploy.yml` (Settings → Pages → Source: **GitHub Actions**).
 
 ---

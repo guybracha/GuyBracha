@@ -13,8 +13,8 @@ export function Footer() {
           something <em>bold.</em>
         </h2>
         <p style={{ maxWidth: "46ch", opacity: 0.8, marginBottom: 28 }}>
-          Open to full-time roles, freelance and creative collaborations in game art, branding and
-          visual storytelling.
+          Open to full-time roles, freelance and collaborations in graphic design, UI/UX and
+          branding.
         </p>
         <a className="contact-mail" href={`mailto:${site.email}`}>
           {site.email}
