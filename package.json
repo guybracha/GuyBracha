@@ -4,11 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "thumbs": "node scripts/generate-thumbs.mjs",
-    "dev": "npm run thumbs && next dev",
-    "build": "npm run thumbs && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "npx serve out",
-    "typecheck": "npm run thumbs && tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "^16.4.6",
@@ -19,7 +18,6 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "sharp": "^0.35.5",
     "typescript": "^7.0.2"
   }
 }

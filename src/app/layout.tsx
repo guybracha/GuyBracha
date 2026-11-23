@@ -21,13 +21,12 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description:
-    "Portfolio of Guy Bracha — graphic designer and illustrator specialising in casual game art, monetization visuals, branding, character design and comic art.",
-  icons: { icon: asset("/contents/britain.webp") },
+    "Portfolio of Guy Bracha — graphic and UI/UX designer with a software-engineering background, focused on branding, marketing assets, monetization visuals and website layouts.",
   openGraph: {
     type: "website",
     title: `${site.name} — ${site.role}`,
     description: site.tagline,
-    images: [asset("/thumbs/art/compassCrew.webp")],
+    images: [asset(site.portrait)],
   },
 };
 

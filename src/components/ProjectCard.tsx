@@ -1,38 +1,34 @@
-import Link from "next/link";
-import { asset, getImageMeta, type Project } from "@/data/projects";
-import { ArrowRight } from "./Icons";
+import type { Project } from "@/data/projects";
+import { ArrowUpRight } from "./Icons";
 
-export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
-  const cover = getImageMeta(project.cover);
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <Link
-      href={`/work/${project.slug}/`}
-      className="card"
-      style={{ "--card-accent": project.accent } as React.CSSProperties}
-    >
-      <div className="card-media">
+    <article className="card" style={{ "--card-accent": project.accent } as React.CSSProperties}>
+      <div className="card-head">
         <span className="card-tag">{project.category}</span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={asset(cover.thumb)}
-          width={cover.thumbWidth}
-          height={cover.thumbHeight}
-          alt=""
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-        />
+        <span className="card-num" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
       <div className="card-body">
         <div className="card-top">
           <h3 className="card-title">{project.title}</h3>
-          <span className="card-year">{project.year}</span>
+          {project.year && <span className="card-year">{project.year}</span>}
         </div>
         <p className="card-summary">{project.summary}</p>
-        <span className="card-arrow">
-          View project · {project.images.length} {project.images.length === 1 ? "piece" : "pieces"}
-          <ArrowRight />
-        </span>
+        <ul className="card-stack" aria-label="Tools and technologies">
+          {project.stack.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+        <div className="card-links">
+          {project.links.map((l) => (
+            <a key={l.href} className="btn" href={l.href} target="_blank" rel="noreferrer">
+              {l.label} <ArrowUpRight />
+            </a>
+          ))}
+        </div>
       </div>
-    </Link>
+    </article>
   );
 }
