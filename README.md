@@ -1,6 +1,6 @@
 # Guy Bracha – Portfolio
 
-[![Website Status](https://img.shields.io/website-up-down-green-red/https/guybracha.github.io/GuyBracha.svg)](https://guybracha.github.io/GuyBracha/)
+[![Website Status](https://img.shields.io/website-up-down-green-red/https/guy-bracha.vercel.app.svg)](https://guy-bracha.vercel.app/)
 
 Author: **Guy Bracha**  
 Graphic Designer | Character Artist | World Builder  
@@ -55,24 +55,23 @@ I'm always open to collaborations, freelance work, or creative partnerships in *
 Reach out through:
 
 - **LinkedIn**: [Profile](https://www.linkedin.com/in/guy-bracha-b44b34244/)  
-- **Portfolio**: [guybracha.github.io/GuyBracha](https://guybracha.github.io/GuyBracha/)  
+- **Portfolio**: [guy-bracha.vercel.app](https://guy-bracha.vercel.app/)  
 - **Email**: *guy.bracha@gmail.com*  
 
 ---
 
 ## 🛠 Development
 
-The site is built with **Next.js (App Router, TypeScript)** and exported as static HTML for GitHub Pages.
+The site is built with **Next.js (App Router, TypeScript)**, exported as static HTML and deployed on **Vercel** (every push to `main` deploys).
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000/GuyBracha
+npm run dev      # http://localhost:3000
 npm run build    # static site in ./out
 ```
 
 - Content lives in `src/data/projects.ts` (projects & links) and `src/data/site.ts` (bio, experience, education).
 - Static files (portrait, CV) live in `public/contents/`.
-- Pushing to `main` deploys via `.github/workflows/deploy.yml` (Settings → Pages → Source: **GitHub Actions**).
 
 ---
 
